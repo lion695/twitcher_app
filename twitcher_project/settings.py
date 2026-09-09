@@ -24,10 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-insecure-key-for-local-dev")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'twitcher-app-0de26394518f.herokuapp.com']
 
 # Application definition
 
