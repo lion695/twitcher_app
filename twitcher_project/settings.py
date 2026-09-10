@@ -32,6 +32,12 @@ DEBUG = "DEVELOPMENT" in os.environ
 
 ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net",
+    "https://*.gitpod.io",
+    "https://*.herokuapp.com"
+]
+
 # Application definition
 
 INSTALLED_APPS = [
