@@ -28,6 +28,14 @@ class Sighting(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
+    # 4. Additional Fields
+    location_spotted = models.CharField(max_length=255, verbose_name="Location Details")
+    
+    # New optional summary field for a quick teaser on the main feed
+    summary = models.TextField(blank=True, null=True, help_text="A short summary or teaser of the sighting (optional).")
+    
+    date_spotted = models.DateField(help_text="When did you see this bird?")
+
     class Meta:
         ordering = ["-date_spotted", "-created_on"]
 
