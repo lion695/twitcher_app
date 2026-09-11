@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sighting, comment
+from .models import Sighting, Comment
 
 # Register your models here.
 @admin.register(Sighting)
