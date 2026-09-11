@@ -15,11 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from sightings.views import hello_twitcher
-
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sightings/', hello_twitcher, name='hello_twitcher'),
+    # Hand off root traffic down to the sightings app-level routing file
+    path('', include('sightings.urls'), name='sighting-urls'),
 ]
+
