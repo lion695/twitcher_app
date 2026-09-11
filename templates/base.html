@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Twitcher App{% endblock %}</title>
+    <!-- Fully qualified responsive Bootstrap 5 CSS layout framework -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <!-- Fully qualified FontAwesome link for professional UI vector icons -->
+    <link href="https://cloudflare.com" rel="stylesheet">
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <!-- Accessible Semantic Navigation Bar Element (LO1.1) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm mb-4" role="navigation">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'home' %}">
+                <i class="fa-solid fa-eagle me-2"></i> Twitcher App
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'home' %}"><i class="fa-solid fa-house me-1"></i> Home
+                            Feed</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="#"><i class="fa-solid fa-circle-plus me-1"></i> Log
+                            Sighting</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/"><i class="fa-solid fa-user-shield me-1"></i> Dashboard</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Injectable Content Container (LO1.1) -->
+    <main class="container flex-grow-1">
+        {% block content %}
+        <!-- Child template HTML layouts inject here -->
+        {% endblock %}
+    </main>
+
+    <!-- Accessible Semantic Footer Element (LO1.1) -->
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <div class="container">
+            <p class="mb-0 small">&copy; {% now "Y" %} Twitcher App - Built for Code Institute Educational Assessment.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper JS Script Link -->
+    <script src="https://jsdelivr.net"></script>
+</body>
+
+</html>
