@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_ckeditor_5.fields import CKEditor5Field
 
-# Create your models here.
 # Constant choices tuple defining visibility states for bird logs
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -27,36 +27,36 @@ class Sighting(models.Model):
     species_name = models.CharField(max_length=150, verbose_name="Bird Species")
     location_spotted = models.CharField(max_length=255, verbose_name="Location Details")
     date_spotted = models.DateField(help_text="When did you see this bird?")
-    notes = models.TextField(help_text="Describe behavior, plumage, environment, etc.")
+    
+    # Swapped to modern CKEditor 5 field type targeting default configuration layout rules
+    notes = CKEditor5Field('Field Notes', config_name='default')
 
-    # 3. Structural Metadata Tracker Fields
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-
-    # 4. Additional Fields
+    # Optional image upload field (Satisfies Pillow library requirement)
     image = models.ImageField(
         upload_to="sightings/",
         blank=True,
         null=True,
         help_text="Upload an image of the sighting (optional).",
     )
-    location_spotted = models.CharField(max_length=255, verbose_name="Location Details")
 
-    # New optional summary field for a quick teaser on the main feed
+    # Optional summary field for quick teasers on the home feed cards
     summary = models.TextField(
         blank=True,
         null=True,
         help_text="A short summary or teaser of the sighting (optional).",
     )
 
-    date_spotted = models.DateField(help_text="When did you see this bird?")
+    # 3. Structural Metadata Tracker Fields
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
         ordering = ["-date_spotted", "-created_on"]
 
     def __str__(self):
-        return f"{self.species_name} spotted at {self.location_spotted} by {self.author.username}"
+        """Returns required assessment format layout"""
+        return f"{self.title} | written by {self.author.username}"
 
 
 class Comment(models.Model):
@@ -65,19 +65,13 @@ class Comment(models.Model):
     left by twitchers underneath individual bird sightings.
     Satisfies Code Institute LO1.2 and LO7.1 guidelines.
     """
-
-    # 1. Relationships (Many-to-One database configurations)
     sighting = models.ForeignKey(
         Sighting, on_delete=models.CASCADE, related_name="comments"
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
-
-    # 2. Content Attribute Fields
     body = models.TextField(
         help_text="Write your comment or sighting verification here."
     )
-
-    # 3. Moderation & Structural Metadata Trackers
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 
