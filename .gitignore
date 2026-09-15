@@ -3,3 +3,9 @@ __pycache__/
 *.pyc
 env.py
 db.sqlite3
+
+
+# Exclude test data blueprints from tracking
+sightings/fixtures/
+# Exclude migrations from tracking
+sightings/migrations/
