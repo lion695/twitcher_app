@@ -51,4 +51,46 @@
     </div>
     {% endfor %}
 </section>
+
+<!-- Accessible Responsive Bootstrap 5 Pagination Interface (LO1.1 Compliance) -->
+{% if is_paginated %}
+<nav aria-label="Sighting feed page navigation" class="my-4">
+    <ul class="pagination justify-content-center">
+        
+        <!-- Previous Page Button Controller Layer -->
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link shadow-sm border-success text-success fw-bold" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous Page">
+                    <span aria-hidden="true">&laquo;</span> PREV
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link text-muted bg-light">&laquo; PREV</span>
+            </li>
+        {% endif %}
+
+        <!-- Current Page Number Indicator Tracker Box -->
+        <li class="page-item disabled">
+            <span class="page-link bg-success text-white fw-bold shadow-sm">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+        </li>
+
+        <!-- Next Page Button Controller Layer -->
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link shadow-sm border-success text-success fw-bold" href="?page={{ page_obj.next_page_number }}" aria-label="Next Page">
+                    NEXT <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link text-muted bg-light">NEXT &raquo;</span>
+            </li>
+        {% endif %}
+
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}
