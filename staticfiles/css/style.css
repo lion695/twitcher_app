@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Twitcher_Project Global Design Palette (LO1.1 Compliance)
+   ========================================================================== */
+
+:root {
+    /* Nature-Inspired Branding Palette from Coolors.co */
+    --primary-forest-green: #1E4620; /* Navbars, primary headers, major buttons */
+    --secondary-sage-green: #7DAA7D; /* Visual badges, borders, subtle highlights */
+    --cta-beak-yellow:      #F4A261; /* Eye-catching action buttons (+ Log Sighting) */
+    --text-dark-slate:      #2B2D42; /* Main readable text body (High-contrast) */
+    --bg-light-canvas:     #F8F9FA; /* App background canvas */
+    --pure-white:           #FFFFFF; /* Card backgrounds, clean text fields */
+    --dark-footer:          #1A1B2F; /* Deep accent footer background */
+}
+
+body {
+    background-color: var(--bg-light-canvas);
+    color: var(--text-dark-slate);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom Overrides for the Bootstrap Navigation Bar Bar */
+.navbar.bg-success {
+    background-color: var(--primary-forest-green) !important;
+    border-bottom: 3px solid var(--secondary-sage-green);
+}
+
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--cta-beak-yellow) !important;
+}
+
+/* Eye-Catching Highlight styling for the "Log Sighting" Action CTA Link */
+.navbar .nav-link.text-warning {
+    color: var(--cta-beak-yellow) !important;
+    font-weight: bold;
+    border: 1px solid var(--cta-beak-yellow);
+    border-radius: 4px;
+    padding: 4px 12px;
+    margin-left: 8px;
+}
+
+.navbar .nav-link.text-warning:hover {
+    background-color: var(--cta-beak-yellow);
+    color: var(--primary-forest-green) !important;
+}
+
+/* Card layout wrapper to separate bird logs beautifully */
+.card {
+    background-color: var(--pure-white);
+    border: 1px solid rgba(125, 170, 125, 0.3) !important; /* Soft opacity Sage border */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+/* Card Hover Animation Matrix */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(30, 70, 32, 0.1) !important; /* Forest Green tinted shadow */
+    border-color: var(--secondary-sage-green) !important;
+}
+
+/* Typography Headings Adjustments */
+h1, h2, h3, .text-success {
+    color: var(--primary-forest-green) !important;
+}
+
+/* Badge Layout Highlights */
+.badge.bg-secondary {
+    background-color: var(--secondary-sage-green) !important;
+    color: var(--pure-white) !important;
+}
+
+/* Deep Accessible Footer Customization */
+footer.bg-dark {
+    background-color: var(--dark-footer) !important;
+    border-top: 4px solid var(--primary-forest-green);
+}
