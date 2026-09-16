@@ -14,3 +14,20 @@ class SightingListView(generic.ListView):
     template_name = "sightings/index.html"
     context_object_name = "sighting_list"
     paginate_by = 6
+
+class SightingDetailView(generic.DetailView):
+    """
+    Class-based view to render the comprehensive field notes, 
+    media assets, and approved comments for an individual bird sighting.
+    Satisfies Code Institute LO2.2 (Read Detail) requirements.
+    """
+    model = Sighting
+    template_name = 'sightings/sighting_detail.html'
+    context_object_name = 'sighting'
+
+    def get_context_data(self, **kwargs):
+        """Injects approved community comments into the template rendering context"""
+        context = super().get_context_data(**kwargs)
+        # Filters comments to ensure unapproved text records remain hidden
+        context['comments'] = self.object.comments.filter(approved=True).order_by('created_on')
+        return context

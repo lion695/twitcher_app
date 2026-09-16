@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ sighting.title }} - Twitcher App{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Main Observation Content Column (LO1.1) -->
+    <article class="col-lg-8 mb-4">
+        <div class="card p-4 shadow-sm border-0 mb-4">
+            <header class="mb-3">
+                <span class="badge bg-secondary mb-2">{{ sighting.species_name }}</span>
+                <h1 class="display-6 fw-bold mb-2">{{ sighting.title }}</h1>
+                <div class="text-muted small d-flex flex-wrap gap-3">
+                    <span><i class="fa-solid fa-user me-1"></i> Logged by: <strong>{{ sighting.author.username
+                            }}</strong></span>
+                    <span><i class="fa-regular fa-calendar me-1"></i> Spotted on: {{ sighting.date_spotted }}</span>
+                    <span><i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ sighting.location_spotted
+                        }}</span>
+                </div>
+            </header>
+
+            <hr class="text-muted">
+
+            <!-- Field Notes Container (Renders clean CKEditor HTML using the 'safe' filter) -->
+            <div class="card-text sighting-notes mb-4">
+                {{ sighting.notes|safe }}
+            </div>
+
+            <a href="{% url 'home' %}" class="btn btn-outline-success btn-sm align-self-start">
+                <i class="fa-solid fa-arrow-left me-1"></i> Back to Home Feed
+            </a>
+        </div>
+    </article>
+
+    <!-- Connected Community Comments Sidebar Column (LO1.1, LO1.2) -->
+    <section class="col-lg-4 mb-4">
+        <div class="card p-4 shadow-sm border-0">
+            <h2 class="h4 fw-bold mb-3"><i class="fa-regular fa-comments me-2"></i> Discussions ({{ comments.count }})
+            </h2>
+            <hr class="text-muted mt-0">
+
+            <div class="comment-stream" style="max-height: 500px; overflow-y: auto;">
+                {% for comment in comments %}
+                <div class="bg-light p-3 rounded mb-3 border-start border-4 border-success">
+                    <p class="mb-1 text-dark small">{{ comment.body }}</p>
+                    <small class="text-muted d-block mt-1">
+                        By: <strong>{{ comment.author.username }}</strong> &bull; {{ comment.created_on|date:"M d, Y" }}
+                    </small>
+                </div>
+                {% empty %}
+                <div class="text-center py-4 text-muted small">
+                    <i class="fa-regular fa-comment-dots display-6 d-block mb-2 text-secondary"></i>
+                    No verifications yet. Be the first to verify or comment on this sighting!
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
