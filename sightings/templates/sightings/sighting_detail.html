@@ -79,7 +79,8 @@
             <div class="alert alert-info p-3 small mb-4 shadow-sm border-0" role="alert"
                 style="background-color: var(--bg-light-canvas); border-left: 4px solid var(--secondary-sage-green) !important;">
                 <i class="fa-solid fa-circle-info me-1 text-success"></i>
-                Want to corroborate this log? Please <a href="{% url 'account_login' %}"
+                <!-- FIXED: Changed from named url tag to direct static string path URL -->
+                Want to corroborate this log? Please <a href="/accounts/login/"
                     class="fw-bold text-success text-decoration-none">sign in</a> to leave field notes.
             </div>
             <hr class="text-muted">
