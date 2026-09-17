@@ -56,9 +56,39 @@
                 comments.count }})</h2>
             <hr class="text-muted mt-0">
 
+            <!-- Interactive Comment Form Section Block (LO2.4, LO3.2) -->
+            {% if user.is_authenticated %}
+            <div class="comment-form-wrapper mb-4">
+                <h3 class="h6 fw-bold text-dark mb-2"><i class="fa-solid fa-pen-to-square me-1 text-success"></i> Leave
+                    a Sighting Verification:</h3>
+                <form method="POST" action="{% url 'sighting_detail' sighting.slug %}" class="needs-validation">
+                    {% csrf_token %}
+
+                    <!-- Renders our styled backend form body field context -->
+                    <div class="mb-2">
+                        {{ comment_form }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-sm w-100 fw-bold shadow-sm">
+                        <i class="fa-solid fa-paper-plane me-1"></i> Submit Verification
+                    </button>
+                </form>
+            </div>
+            <hr class="text-muted">
+            {% else %}
+            <div class="alert alert-info p-3 small mb-4 shadow-sm border-0" role="alert"
+                style="background-color: var(--bg-light-canvas); border-left: 4px solid var(--secondary-sage-green) !important;">
+                <i class="fa-solid fa-circle-info me-1 text-success"></i>
+                Want to corroborate this log? Please <a href="{% url 'account_login' %}"
+                    class="fw-bold text-success text-decoration-none">sign in</a> to leave field notes.
+            </div>
+            <hr class="text-muted">
+            {% endif %}
+
+            <!-- Scrollable past comments stream bucket list block -->
             <div class="comment-stream" style="max-height: 500px; overflow-y: auto;">
                 {% for comment in comments %}
-                <div class="bg-light p-3 rounded mb-3 border-start border-4 border-success">
+                <div class="bg-light p-3 rounded mb-3 border-start border-4 border-success shadow-sm">
                     <p class="mb-1 text-dark small">{{ comment.body }}</p>
                     <small class="text-muted d-block mt-1">
                         By: <strong>{{ comment.author.username }}</strong> &bull; {{ comment.created_on|date:"M d, Y" }}
