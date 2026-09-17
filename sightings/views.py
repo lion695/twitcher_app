@@ -36,6 +36,7 @@ class SightingDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         """Injects approved community comments and an empty form instance into context"""
         context = super().get_context_data(**kwargs)
+        # FIXED: Reverted back to .comments to leverage your model's declared related_name="comments"
         context["comments"] = self.object.comments.filter(approved=True).order_by(
             "created_on"
         )
