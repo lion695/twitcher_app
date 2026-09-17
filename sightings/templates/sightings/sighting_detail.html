@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}{{ sighting.title }} - Twitcher App{% endblock %}
 
@@ -6,37 +7,53 @@
 <div class="row">
     <!-- Main Observation Content Column (LO1.1) -->
     <article class="col-lg-8 mb-4">
-        <div class="card p-4 shadow-sm border-0 mb-4">
-            <header class="mb-3">
-                <span class="badge bg-secondary mb-2">{{ sighting.species_name }}</span>
-                <h1 class="display-6 fw-bold mb-2">{{ sighting.title }}</h1>
-                <div class="text-muted small d-flex flex-wrap gap-3">
-                    <span><i class="fa-solid fa-user me-1"></i> Logged by: <strong>{{ sighting.author.username
-                            }}</strong></span>
-                    <span><i class="fa-regular fa-calendar me-1"></i> Spotted on: {{ sighting.date_spotted }}</span>
-                    <span><i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ sighting.location_spotted
-                        }}</span>
-                </div>
-            </header>
+        <div class="card shadow-sm border-0 mb-4 overflow-hidden">
 
-            <hr class="text-muted">
-
-            <!-- Field Notes Container (Renders clean CKEditor HTML using the 'safe' filter) -->
-            <div class="card-text sighting-notes mb-4">
-                {{ sighting.notes|safe }}
+            <!-- Conditional Image Header Container (LO1.1) -->
+            <div class="sighting-image-header bg-light text-center border-bottom"
+                style="max-height: 400px; overflow: hidden;">
+                {% if sighting.image %}
+                <img src="{{ sighting.image.url }}" class="img-fluid w-100 object-fit-cover"
+                    alt="User uploaded photo of {{ sighting.species_name }}">
+                {% else %}
+                <!-- Local static fallback placeholder asset -->
+                <img src="{% static 'images/default.jpg' %}" class="img-fluid w-100 object-fit-cover"
+                    alt="Default nature placeholder image">
+                {% endif %}
             </div>
 
-            <a href="{% url 'home' %}" class="btn btn-outline-success btn-sm align-self-start">
-                <i class="fa-solid fa-arrow-left me-1"></i> Back to Home Feed
-            </a>
+            <div class="p-4">
+                <header class="mb-3">
+                    <span class="badge bg-secondary mb-2">{{ sighting.species_name }}</span>
+                    <h1 class="display-6 fw-bold text-success mb-2">{{ sighting.title }}</h1>
+                    <div class="text-muted small d-flex flex-wrap gap-3">
+                        <span><i class="fa-solid fa-user me-1"></i> Logged by: <strong>{{ sighting.author.username
+                                }}</strong></span>
+                        <span><i class="fa-regular fa-calendar me-1"></i> Spotted on: {{ sighting.date_spotted }}</span>
+                        <span><i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ sighting.location_spotted
+                            }}</span>
+                    </div>
+                </header>
+
+                <hr class="text-muted">
+
+                <!-- Field Notes Container (Renders clean CKEditor HTML safely) -->
+                <div class="card-text sighting-notes mb-4 text-dark">
+                    {{ sighting.notes|safe }}
+                </div>
+
+                <a href="{% url 'home' %}" class="btn btn-outline-success btn-sm align-self-start">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Back to Home Feed
+                </a>
+            </div>
         </div>
     </article>
 
     <!-- Connected Community Comments Sidebar Column (LO1.1, LO1.2) -->
     <section class="col-lg-4 mb-4">
         <div class="card p-4 shadow-sm border-0">
-            <h2 class="h4 fw-bold mb-3"><i class="fa-regular fa-comments me-2"></i> Discussions ({{ comments.count }})
-            </h2>
+            <h2 class="h4 fw-bold mb-3 text-success"><i class="fa-regular fa-comments me-2"></i> Discussions ({{
+                comments.count }})</h2>
             <hr class="text-muted mt-0">
 
             <div class="comment-stream" style="max-height: 500px; overflow-y: auto;">
