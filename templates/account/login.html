@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block title %}{% trans "Sign In" %} - Twitcher App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow border-0 p-4">
+            <div class="card-body">
+                <header class="text-center mb-4">
+                    <i class="fa-solid fa-eagle display-4 text-success mb-2"></i>
+                    <h1 class="h3 fw-bold text-dark">{% trans "Welcome Back" %}</h1>
+                    <p class="text-muted small">Sign in to document observations and corroborate field notes.</p>
+                </header>
+
+                <form class="login" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    
+                    <!-- Form field rendering wrapper -->
+                    <div class="mb-3 auth-fields">
+                        {{ form.as_p }}
+                    </div>
+
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+
+                    <button class="btn btn-success w-100 fw-bold shadow-sm py-2 mt-2" type="submit">
+                        <i class="fa-solid fa-right-to-bracket me-1"></i> {% trans "Sign In" %}
+                    </button>
+                </form>
+
+                <div class="text-center mt-4 pt-3 border-top">
+                    <p class="small text-muted mb-0">
+                        New to the community? 
+                        <a class="text-success fw-bold text-decoration-none" href="{% url 'account_signup' %}">Register an account</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

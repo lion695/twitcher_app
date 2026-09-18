@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Sign Out" %} - Twitcher App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow border-0 p-4">
+            <div class="card-body">
+                <header class="text-center mb-4">
+                    <i class="fa-solid fa-right-from-bracket display-4 text-success mb-2"></i>
+                    <h1 class="h3 fw-bold text-dark">{% trans "Sign Out" %}</h1>
+                    <p class="text-muted small">{% trans 'Are you sure you want to sign out of your Twitcher App account?' %}</p>
+                </header>
+
+                <form method="POST" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success fw-bold shadow-sm py-2" type="submit">
+                            <i class="fa-solid fa-check me-1"></i> {% trans 'Sign Out' %}
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary fw-bold py-2">
+                            <i class="fa-solid fa-xmark me-1"></i> {% trans 'Cancel' %}
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
