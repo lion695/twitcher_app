@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('about/', include('about.urls'), name='about-urls'),
     path('ckeditor5/', include('django_ckeditor_5.urls')),  # CKEditor 5 URL tree
     path('', include('sightings.urls'), name='sighting-urls'),
 ]

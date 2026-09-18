@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_ckeditor_5",  # Adds the modern rich text engine
     "sightings",
+    "about",
 ]
 
 MIDDLEWARE = [

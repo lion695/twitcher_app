@@ -27,63 +27,74 @@
 <body class="bg-light d-flex flex-column min-vh-100">
 
     <!-- Accessible Semantic Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm mb-4" role="navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm mb-4" role="navigation">
 
-        <div class="container">
+    <div class="container">
 
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'home' %}">
-                <i class="fa-solid fa-eagle me-2"></i>
-                Twitcher App
-            </a>
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'home' %}">
+            <i class="fa-solid fa-eagle me-2"></i>
+            Twitcher App
+        </a>
 
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="mainNavbar">
+        <div class="collapse navbar-collapse" id="mainNavbar">
 
-                <ul class="navbar-nav ms-auto align-items-center mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto align-items-center mb-2 mb-lg-0">
 
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="{% url 'home' %}">
-                            <i class="fa-solid fa-house me-1"></i>
-                            Home Feed
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <!-- Dynamic validation active cue for home path -->
+                    <a class="nav-link px-3 {% if request.path == '/' %}active fw-bold{% endif %}" href="{% url 'home' %}">
+                        <i class="fa-solid fa-house me-1"></i>
+                        Home Feed
+                    </a>
+                </li>
 
-                    {% if user.is_authenticated %}
+                <!-- NEW ADDITION: About Me Page Nav Link (LO1.1 Compliance) -->
+                <li class="nav-item">
+                    <!-- Evaluates request path to inject standard Bootstrap active highlight styling -->
+                    <a class="nav-link px-3 {% if '/about/' in request.path %}active fw-bold{% endif %}" href="/about/">
+                        <i class="fa-solid fa-circle-info me-1"></i>
+                        About
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-warning px-3" href="#">
-                            <i class="fa-solid fa-circle-plus me-1"></i>
-                            Log Sighting
-                        </a>
-                    </li>
+                {% if user.is_authenticated %}
 
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="/admin/">
-                            <i class="fa-solid fa-user-shield me-1"></i>
-                            Dashboard
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning px-3" href="#">
+                        <i class="fa-solid fa-circle-plus me-1"></i>
+                        Log Sighting
+                    </a>
+                </li>
 
-                    {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="/admin/">
+                        <i class="fa-solid fa-user-shield me-1"></i>
+                        Dashboard
+                    </a>
+                </li>
 
-                </ul>
+                {% endif %}
 
-            </div>
+            </ul>
 
         </div>
 
-    </nav>
+    </div>
+
+</nav>
+
 
     <!-- Main Content -->
     <main class="container flex-grow-1">
