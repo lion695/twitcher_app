@@ -52,42 +52,71 @@
 
             <ul class="navbar-nav ms-auto align-items-center mb-2 mb-lg-0">
 
-                <li class="nav-item">
-                    <!-- Dynamic validation active cue for home path -->
-                    <a class="nav-link px-3 {% if request.path == '/' %}active fw-bold{% endif %}" href="{% url 'home' %}">
-                        <i class="fa-solid fa-house me-1"></i>
-                        Home Feed
-                    </a>
-                </li>
+    <li class="nav-item">
+        <!-- Dynamic validation active cue for home path -->
+        <a class="nav-link px-3 {% if request.path == '/' %}active fw-bold{% endif %}" href="{% url 'home' %}">
+            <i class="fa-solid fa-house me-1"></i>
+            Home Feed
+        </a>
+    </li>
 
-                <!-- NEW ADDITION: About Me Page Nav Link (LO1.1 Compliance) -->
-                <li class="nav-item">
-                    <!-- Evaluates request path to inject standard Bootstrap active highlight styling -->
-                    <a class="nav-link px-3 {% if '/about/' in request.path %}active fw-bold{% endif %}" href="/about/">
-                        <i class="fa-solid fa-circle-info me-1"></i>
-                        About
-                    </a>
-                </li>
+    <!-- About Me Page Nav Link (LO1.1 Compliance) -->
+    <li class="nav-item">
+        <!-- Evaluates request path to inject standard Bootstrap active highlight styling -->
+        <a class="nav-link px-3 {% if '/about/' in request.path %}active fw-bold{% endif %}" href="/about/">
+            <i class="fa-solid fa-circle-info me-1"></i>
+            About
+        </a>
+    </li>
 
-                {% if user.is_authenticated %}
+    <!-- Dynamic Authentication Conditional Rendering Layer (LO3.2 Compliance) -->
+    {% if user.is_authenticated %}
 
-                <li class="nav-item">
-                    <a class="nav-link text-warning px-3" href="#">
-                        <i class="fa-solid fa-circle-plus me-1"></i>
-                        Log Sighting
-                    </a>
-                </li>
+        <!-- Links visible exclusively to logged-in users -->
+        <li class="nav-item">
+            <a class="nav-link text-warning px-3" href="#">
+                <i class="fa-solid fa-circle-plus me-1"></i>
+                Log Sighting
+            </a>
+        </li>
 
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="/admin/">
-                        <i class="fa-solid fa-user-shield me-1"></i>
-                        Dashboard
-                    </a>
-                </li>
+        <li class="nav-item">
+            <a class="nav-link px-3" href="/admin/">
+                <i class="fa-solid fa-user-shield me-1"></i>
+                Dashboard
+            </a>
+        </li>
 
-                {% endif %}
+        <li class="nav-item">
+            <!-- Named Django Allauth URL target path routing -->
+            <a class="nav-link px-3 text-white-50" href="/accounts/logout/">
+                <i class="fa-solid fa-right-from-bracket me-1"></i>
+                Sign Out
+            </a>
+        </li>
 
-            </ul>
+        {% else %}
+
+        <!-- Links visible exclusively to anonymous/logged-out web traffic (LO3.2) -->
+        <li class="nav-item">
+            <a class="nav-link px-3 fw-medium text-white" href="/accounts/login/">
+                <i class="fa-solid fa-right-to-bracket me-1"></i>
+                Sign In
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link px-3 fw-medium text-white-50" href="/accounts/signup/">
+                <i class="fa-solid fa-user-plus me-1"></i>
+                Register
+            </a>
+        </li>
+
+    {% endif %}
+
+
+</ul>
+
 
         </div>
 
