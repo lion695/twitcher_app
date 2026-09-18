@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', include('about.urls'), name='about-urls'),
     path('ckeditor5/', include('django_ckeditor_5.urls')),  # CKEditor 5 URL tree
+    path('accounts/', include('allauth.urls')), # <-- ALLAUTH URL PATHWAY TREE (LO1.2)
     path('', include('sightings.urls'), name='sighting-urls'),
 ]
 

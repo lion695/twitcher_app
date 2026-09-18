@@ -47,10 +47,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",          # <-- 1. REQUIRED: Built-in Django package
+    "allauth",                       # <-- 2. Core Allauth App
+    "allauth.account",               # <-- 3. Account management layer
+    "allauth.socialaccount",         # <-- 4. Social account hooks
     "django_ckeditor_5",  # Adds the modern rich text engine
     "sightings",
     "about",
 ]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION = 'none' # Prevents production 500 email-sending crashes
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -59,6 +69,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
