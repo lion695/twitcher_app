@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 
@@ -31,11 +32,10 @@ class Sighting(models.Model):
     # Swapped to modern CKEditor 5 field type targeting default configuration layout rules
     notes = CKEditor5Field('Field Notes', config_name='default')
 
-    # Optional image upload field (Satisfies Pillow library requirement)
-    image = models.ImageField(
-        upload_to="sightings/",
-        blank=True,
-        null=True,
+    # FIXED: Replaced standard models.ImageField with secure Cloudinary engine field
+    image = CloudinaryField(
+        'image', 
+        default='placeholder',
         help_text="Upload an image of the sighting (optional).",
     )
 

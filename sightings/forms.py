@@ -37,7 +37,7 @@ class SightingForm(forms.ModelForm):
 
     class Meta:
         model = Sighting
-        fields = ["title", "species_name", "location_spotted", "summary", "notes"]
+        fields = ["title", "species_name", "location_spotted", "summary", "image", "notes"]
         widgets = {
             "title": forms.TextInput(
                 attrs={

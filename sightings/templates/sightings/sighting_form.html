@@ -14,7 +14,7 @@
                 </header>
 
                 <!-- Secure data submission form wrapper targeting our view logic layout -->
-                <form method="POST" class="needs-validation" novalidate>
+                <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     {% csrf_token %}
                     
                     {{ form.media }} <!-- Enforces CKEditor rich-text javascript assets to load smoothly -->

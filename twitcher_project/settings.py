@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "cloudinary_storage",
+    "cloudinary",
     "django.contrib.staticfiles",
     "django.contrib.sites",          # <-- 1. REQUIRED: Built-in Django package
     "allauth",                       # <-- 2. Core Allauth App
@@ -188,3 +190,6 @@ CKEDITOR_5_CONFIGS = {
         ],
     }
 }
+
+# Cloudinary Media File Storage Routing Engine Layout
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
