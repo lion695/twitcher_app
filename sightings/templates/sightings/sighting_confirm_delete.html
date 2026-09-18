@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Sighting Confirmation - Twitcher App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow border-0 p-4 text-center">
+            <div class="card-body">
+                <i class="fa-solid fa-triangle-exclamation display-4 text-danger mb-3"></i>
+                <h1 class="h3 fw-bold text-dark">Permanently Delete Sighting?</h1>
+                <p class="text-muted small">Are you absolutely sure you want to delete <strong>"{{ object.title }}"</strong>? This process cannot be undone.</p>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-danger fw-bold py-2"><i class="fa-solid fa-trash-can me-1"></i> Permanently Delete</button>
+                        <a href="{% url 'sighting_detail' object.slug %}" class="btn btn-outline-secondary py-2">Cancel and Go Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

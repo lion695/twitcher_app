@@ -3,11 +3,11 @@ from django.views import generic
 from django.contrib import messages  # Triggers user-facing popup notifications (LO2.3)
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
-)  # <-- Enforces access control mixin (LO3.3)
+    UserPassesTestMixin,  # <-- NEW: Restricts updates strictly to the post owner (LO3.3)
+)  
 from django.urls import reverse_lazy  # <-- Securely resolves redirection paths
 from django.utils.text import slugify  # <-- Generates browser-safe clean URL slugs
 from .models import Sighting
-from .forms import CommentForm  # Explicitly import custom form (LO2.4)
 from .forms import CommentForm, SightingForm
 
 
@@ -42,7 +42,6 @@ class SightingDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         """Injects approved community comments and an empty form instance into context"""
         context = super().get_context_data(**kwargs)
-        # FIXED: Reverted back to .comments to leverage your model's declared related_name="comments"
         context["comments"] = self.object.comments.filter(approved=True).order_by(
             "created_on"
         )
@@ -54,7 +53,6 @@ class SightingDetailView(generic.DetailView):
         Processes incoming form submissions to create a new comment record.
         Enforces secure validation and access control.
         """
-        # Ensure only logged-in users can post data entries (LO3.3)
         if not request.user.is_authenticated:
             messages.error(request, "You must be signed in to post a comment.")
             return redirect("account_login")
@@ -63,25 +61,20 @@ class SightingDetailView(generic.DetailView):
         form = CommentForm(request.POST)
 
         if form.is_valid():
-            # Create the comment object model without committing to the DB immediately
             comment = form.save(commit=False)
             comment.author = request.user
             comment.sighting = self.object
-            comment.save()  # Commits the completed record row securely to the database (LO1.2)
+            comment.save()  
 
-            # Near-real-time success popup notification message alert layer (LO2.3)
             messages.success(
                 request,
                 "Your comment has been submitted successfully and is awaiting moderation verification!",
             )
             return redirect("sighting_detail", slug=self.object.slug)
 
-        # Re-render view with form errors if field validation fails (LO2.4)
         context = self.get_context_data()
         context["comment_form"] = form
         return self.render_to_response(context)
-
-        # Frontline CRUD operations.
 
 
 class SightingCreateView(LoginRequiredMixin, generic.CreateView):
@@ -98,18 +91,61 @@ class SightingCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         """Intercepts submission to auto-assign the active user and generate a unique URL slug"""
-        # Enforces secure data relationship constraints (LO1.2)
         form.instance.author = self.request.user
-        form.instance.status = (
-            1  # Automatically publishes post so it hits the feed instantly
-        )
-
-        # Converts title inputs (e.g. "Osprey near dam") into clean URLs ("osprey-near-dam")
+        form.instance.status = 1  # Automatically publishes post so it hits the feed instantly
         form.instance.slug = slugify(form.instance.title)
 
-        # Triggers our dynamic layout success popup notice box banner alert (LO2.3)
         messages.success(
             self.request,
             f"Success! '{form.instance.title}' has been safely logged to the community observation feed.",
         )
         return super().form_valid(form)
+
+
+# ==========================================
+# NEW FRONTLINE CRUD EDIT & DELETE VIEWS
+# ==========================================
+
+class SightingUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    """
+    Frontend view allowing authors to modify their existing bird sightings.
+    Enforces strict ownership validation via UserPassesTestMixin (LO3.3).
+    """
+    model = Sighting
+    form_class = SightingForm
+    template_name = "sightings/sighting_form.html"  # Reuses your beautiful creation form layout!
+
+    def form_valid(self, form):
+        """Regenerates the URL slug automatically if the user modifies the title string"""
+        form.instance.slug = slugify(form.instance.title)
+        messages.success(self.request, f"Changes to '{form.instance.title}' saved successfully.")
+        return super().form_valid(form)
+
+    def test_func(self):
+        """Enforces security restriction: Only the record author can execute updates"""
+        sighting = self.get_object()
+        return self.request.user == sighting.author
+
+    def get_success_url(self):
+        """Redirects seamlessly back to the post's unique detail view page layout"""
+        return reverse_lazy('sighting_detail', kwargs={'slug': self.object.slug})
+
+
+class SightingDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    """
+    Frontend view allowing authors to permanently remove their bird sightings.
+    """
+    model = Sighting
+    template_name = "sightings/sighting_confirm_delete.html"
+    success_url = reverse_lazy("home")
+
+    def test_func(self):
+        """Enforces security restriction: Only the record author can execute deletions"""
+        sighting = self.get_object()
+        return self.request.user == sighting.author
+
+    def delete(self, request, *args, **kwargs):
+        """Intercepts deletion to throw a clear frontend success alert banner"""
+        sighting = self.get_object()
+        messages.success(self.request, f"The bird sighting '{sighting.title}' has been deleted permanently.")
+        return super().delete(request, *args, **kwargs)
