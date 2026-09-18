@@ -1,5 +1,6 @@
 from django import forms
 from .models import Comment
+from .models import Sighting
 
 
 class CommentForm(forms.ModelForm):
@@ -26,3 +27,39 @@ class CommentForm(forms.ModelForm):
         )
         # Removes the auto-generated text label for a cleaner layout
         self.fields["body"].label = False
+
+
+class SightingForm(forms.ModelForm):
+    """
+    Form class for standard users to log bird sightings from the frontend.
+    Satisfies Code Institute LO2.4 (Forms & Validation) criteria.
+    """
+
+    class Meta:
+        model = Sighting
+        fields = ["title", "species_name", "location_spotted", "summary", "notes"]
+        widgets = {
+            "title": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "e.g., Golden Eagle spotted over the ridge",
+                }
+            ),
+            "species_name": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "e.g., Golden Eagle"}
+            ),
+            "location_spotted": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "e.g., Peak District, Derbyshire",
+                }
+            ),
+            "summary": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "rows": 2,
+                    "placeholder": "A brief one-sentence summary...",
+                }
+            ),
+            # The 'notes' field will render our CKEditor rich text block cleanly
+        }

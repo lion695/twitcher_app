@@ -1,8 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib import messages  # Triggers user-facing popup notifications (LO2.3)
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+)  # <-- Enforces access control mixin (LO3.3)
+from django.urls import reverse_lazy  # <-- Securely resolves redirection paths
+from django.utils.text import slugify  # <-- Generates browser-safe clean URL slugs
 from .models import Sighting
 from .forms import CommentForm  # Explicitly import custom form (LO2.4)
+from .forms import CommentForm, SightingForm
 
 
 # Create your views here.
@@ -74,3 +80,36 @@ class SightingDetailView(generic.DetailView):
         context = self.get_context_data()
         context["comment_form"] = form
         return self.render_to_response(context)
+
+        # Frontline CRUD operations.
+
+
+class SightingCreateView(LoginRequiredMixin, generic.CreateView):
+    """
+    Frontend class-based view allowing authenticated users to log bird observations.
+    Enforces automatic author matching and handles model data assignment safely.
+    Satisfies Code Institute LO2.2 (Create) and LO3.3 (Access Restrictions).
+    """
+
+    model = Sighting
+    form_class = SightingForm
+    template_name = "sightings/sighting_form.html"
+    success_url = reverse_lazy("home")
+
+    def form_valid(self, form):
+        """Intercepts submission to auto-assign the active user and generate a unique URL slug"""
+        # Enforces secure data relationship constraints (LO1.2)
+        form.instance.author = self.request.user
+        form.instance.status = (
+            1  # Automatically publishes post so it hits the feed instantly
+        )
+
+        # Converts title inputs (e.g. "Osprey near dam") into clean URLs ("osprey-near-dam")
+        form.instance.slug = slugify(form.instance.title)
+
+        # Triggers our dynamic layout success popup notice box banner alert (LO2.3)
+        messages.success(
+            self.request,
+            f"Success! '{form.instance.title}' has been safely logged to the community observation feed.",
+        )
+        return super().form_valid(form)
