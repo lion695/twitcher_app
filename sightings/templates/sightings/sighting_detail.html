@@ -18,8 +18,9 @@
                     style="max-height: 550px; object-fit: contain;">
                 {% else %}
                 <!-- Local static fallback placeholder asset -->
-                <img src="{% static 'images/default.jpg' %}" class="img-fluid w-100 object-fit-cover"
-                    alt="Default nature placeholder image" style="max-height: 400px;">
+                <img src="{% static 'images/default.jpg' %}" class="img-fluid w-100"
+                    alt="Default nature placeholder image" 
+                    style="max-height: 400px; object-fit: contain;">
                 {% endif %}
             </div>
 
