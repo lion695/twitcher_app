@@ -10,36 +10,42 @@
         <div class="card shadow-sm border-0 mb-4 overflow-hidden">
 
             <!-- Conditional Image Header Container (LO1.1) -->
-            <div class="sighting-image-header bg-light text-center border-bottom"
-                style="max-height: 400px; overflow: hidden;">
+            <div class="sighting-image-header bg-dark text-center border-bottom w-100"
+                style="max-height: 550px; overflow: hidden; height: auto;">
                 {% if sighting.image %}
-                <img src="{{ sighting.image.url }}" class="img-fluid w-100 object-fit-cover"
-                    alt="User uploaded photo of {{ sighting.species_name }}">
+                <img src="{{ sighting.image.url }}" class="img-fluid w-100"
+                    alt="User uploaded photo of {{ sighting.species_name }}"
+                    style="max-height: 550px; object-fit: contain;">
                 {% else %}
                 <!-- Local static fallback placeholder asset -->
                 <img src="{% static 'images/default.jpg' %}" class="img-fluid w-100 object-fit-cover"
-                    alt="Default nature placeholder image">
+                    alt="Default nature placeholder image" style="max-height: 400px;">
                 {% endif %}
             </div>
+
 
             <div class="p-4">
                 <header class="mb-3">
                     <span class="badge bg-secondary mb-2">{{ sighting.species_name }}</span>
                     <h1 class="display-6 fw-bold text-success mb-2">{{ sighting.title }}</h1>
                     <div class="text-muted small d-flex flex-wrap gap-3">
-                        <span><i class="fa-solid fa-user me-1"></i> Logged by: <strong>{{ sighting.author.username }}</strong></span>
+                        <span><i class="fa-solid fa-user me-1"></i> Logged by: <strong>{{ sighting.author.username
+                                }}</strong></span>
                         <span><i class="fa-regular fa-calendar me-1"></i> Spotted on: {{ sighting.date_spotted }}</span>
-                        <span><i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ sighting.location_spotted }}</span>
+                        <span><i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ sighting.location_spotted
+                            }}</span>
                     </div>
                 </header>
 
                 <!-- NEW RESTRICTION LAYER: Author-only CRUD management controls panel (LO3.2) -->
                 {% if user.is_authenticated and user == sighting.author %}
                 <div class="management-actions bg-light p-3 rounded border mb-3 d-flex gap-2">
-                    <a href="{% url 'sighting_edit' sighting.slug %}" class="btn btn-sm btn-outline-dark fw-bold shadow-sm">
+                    <a href="{% url 'sighting_edit' sighting.slug %}"
+                        class="btn btn-sm btn-outline-dark fw-bold shadow-sm">
                         <i class="fa-solid fa-pen-to-square me-1"></i> Edit Entry
                     </a>
-                    <a href="{% url 'sighting_delete' sighting.slug %}" class="btn btn-sm btn-outline-danger fw-bold shadow-sm">
+                    <a href="{% url 'sighting_delete' sighting.slug %}"
+                        class="btn btn-sm btn-outline-danger fw-bold shadow-sm">
                         <i class="fa-solid fa-trash me-1"></i> Delete Entry
                     </a>
                 </div>
@@ -62,7 +68,8 @@
     <!-- Connected Community Comments Sidebar Column (LO1.1, LO1.2) -->
     <section class="col-lg-4 mb-4">
         <div class="card p-4 shadow-sm border-0">
-            <h2 class="h4 fw-bold mb-3 text-success"><i class="fa-regular fa-comments me-2"></i> Discussions ({{ comments.count }})</h2>
+            <h2 class="h4 fw-bold mb-3 text-success"><i class="fa-regular fa-comments me-2"></i> Discussions ({{
+                comments.count }})</h2>
             <hr class="text-muted mt-0">
 
             <!-- Interactive Comment Form Section Block (LO2.4, LO3.2) -->
