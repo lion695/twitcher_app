@@ -57,9 +57,10 @@
                     {{ sighting.notes|safe }}
                 </div>
 
-                <a href="{% url 'home' %}" class="btn btn-outline-success btn-sm align-self-start">
+                <!-- FIXED: Swapped static route for a dynamic browser history traversal interaction (LO1.1 UX Optimization) -->
+                <button onclick="window.history.back();" class="btn btn-outline-success btn-sm align-self-start">
                     <i class="fa-solid fa-arrow-left me-1"></i> Back to Home Feed
-                </a>
+                </button>
             </div>
         </div>
     </article>
