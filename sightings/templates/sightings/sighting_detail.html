@@ -12,7 +12,7 @@
             <!-- Conditional Image Header Container (LO1.1) -->
             <div class="sighting-image-header bg-dark text-center border-bottom w-100"
                 style="max-height: 550px; overflow: hidden; height: auto;">
-                {% if sighting.image %}
+                {% if sighting.image and "placeholder" not in sighting.image.url %}
                 <img src="{{ sighting.image.url }}" class="img-fluid w-100"
                     alt="User uploaded photo of {{ sighting.species_name }}"
                     style="max-height: 550px; object-fit: contain;">
