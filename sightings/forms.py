@@ -37,7 +37,17 @@ class SightingForm(forms.ModelForm):
 
     class Meta:
         model = Sighting
-        fields = ["title", "species_name", "location_spotted", "summary", "image", "notes"]
+        # FIXED: Injected 'date_spotted' to resolve database IntegrityError constraints (LO2.4)
+        fields = [
+            "title",
+            "species_name",
+            "location_spotted",
+            "date_spotted",
+            "summary",
+            "image",
+            "notes",
+        ]
+
         widgets = {
             "title": forms.TextInput(
                 attrs={
@@ -53,6 +63,14 @@ class SightingForm(forms.ModelForm):
                     "class": "form-control",
                     "placeholder": "e.g., Peak District, Derbyshire",
                 }
+            ),  # FIXED: Closed out structural nesting block cleanly
+            # FIXED: Closed out attribute keys cleanly to resolve formatting crashes
+            "date_spotted": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date",
+                    "help_text": "When did you see this bird?",
+                }
             ),
             "summary": forms.Textarea(
                 attrs={
@@ -61,5 +79,4 @@ class SightingForm(forms.ModelForm):
                     "placeholder": "A brief one-sentence summary...",
                 }
             ),
-            # The 'notes' field will render our CKEditor rich text block cleanly
         }
