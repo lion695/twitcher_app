@@ -163,7 +163,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Custom static asset search directory routing (LO1.2)
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "sightings" / "static",
 ]
 
 # Default primary key field type
