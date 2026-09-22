@@ -46,22 +46,22 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.staticfiles",
     "cloudinary_storage",
     "cloudinary",
-    "django.contrib.staticfiles",
-    "django.contrib.sites",          # <-- 1. REQUIRED: Built-in Django package
-    "allauth",                       # <-- 2. Core Allauth App
-    "allauth.account",               # <-- 3. Account management layer
-    "allauth.socialaccount",         # <-- 4. Social account hooks
+    "django.contrib.sites",  # <-- 1. REQUIRED: Built-in Django package
+    "allauth",  # <-- 2. Core Allauth App
+    "allauth.account",  # <-- 3. Account management layer
+    "allauth.socialaccount",  # <-- 4. Social account hooks
     "django_ckeditor_5",  # Adds the modern rich text engine
     "sightings",
     "about",
 ]
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_EMAIL_VERIFICATION = 'none' # Prevents production 500 email-sending crashes
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_EMAIL_VERIFICATION = "none"  # Prevents production 500 email-sending crashes
 
 
 MIDDLEWARE = [
@@ -161,10 +161,18 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Custom static asset search directory routing (LO1.2)
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -190,6 +198,3 @@ CKEDITOR_5_CONFIGS = {
         ],
     }
 }
-
-# Cloudinary Media File Storage Routing Engine Layout
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
