@@ -30,3 +30,8 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+# Custom error handlers
+
+handler404 = 'twitcher_project.views.handler404'
+handler500 = 'twitcher_project.views.handler500'
+
