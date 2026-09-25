@@ -27,7 +27,7 @@ https://docs.github.com/en/get-started/writing-on-github/getting-started-with-wr
 Note: these are not visible within your README Previewer, and are only visible once you push the code to GitHub.
 
 **Site Mockups**
-*([amiresponsive](https://ui.dev/amiresponsive?url=https://twitcher-app-0de26394518f.herokuapp.com), [techsini](https://techsini.com/multi-mockup), etc.)*
+*([amiresponsive](https://fireship.dev/amiresponsive?url=https://twitcher-app-0de26394518f.herokuapp.com), [techsini](https://techsini.com/multi-mockup), etc.)*
 Having issues generating site mockups? This is likely due to security policies with your deployed site.
 If you open up your DevTools, there may be an error referencing `X-Frame-Options`.
 
