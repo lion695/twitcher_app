@@ -449,13 +449,6 @@ Deployment steps are as follows, after account setup:
 > [!IMPORTANT]  
 > This is a sample only; you would replace the values with your own if cloning/forking my repository.
 
-🛑 !!! ATTENTION lion695 !!! 🛑
-
-⚠️ DO NOT update the environment variables to your own! These should never be public; only use the demo values below! ⚠️
-⚠️ Replace the keys below with your own actual keys used; example: if not using Cloudinary, then remove those keys, or replace with whatever ones you're using. ⚠️
-
-🛑 --- END --- 🛑
-
 | Key | Value |
 | --- | --- |
 | `CLOUDINARY_URL` | user-inserts-own-cloudinary-url |
