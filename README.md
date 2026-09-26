@@ -44,83 +44,71 @@ source: [twitcher_app amiresponsive](https://ui.dev/amiresponsive?url=https://tw
 > [!IMPORTANT]  
 > The examples in these templates are strongly influenced by the Code Institute walkthrough project called "I Think Therefore I Blog".
 
-## UX
-
-### The 5 Planes of UX
-
-⚠️ NOTE: make sure to update the text below to match your own project! ⚠️
+### The 5 Planes of UX [LO1.5]
 
 #### 1. Strategy
 
 **Purpose**
-- Provide blog owners with tools to create, manage, and moderate engaging blog content and user interactions.
-- Offer users and guests an intuitive platform to explore, engage, and contribute to blog discussions.
+- Provide wildlife enthusiasts and twitchers with an intuitive digital log to create, manage, and track real-time bird sighting records and geographical observations.
+- Offer a collaborative community space for peer birdwatchers to engage, review, and corroborating field notes through structured comments.
 
 **Primary User Needs**
-- Blog owners need seamless tools for publishing and managing posts and comments.
-- Registered users need the ability to engage with blog content through comments and account features.
-- Guests need the ability to browse and enjoy blog content without registration.
+- **Field Observers/Twitchers**: Need a mobile-responsive platform to instantly log bird details (species name, text summaries, rich-text field notes, media imagery, and precise calendars) while out in the field [LO1.1, LO2.4].
+- **Community Members**: Need the ability to safely view recent activity feeds, verify rare species records, and contribute field insight via community comments.
+- **Site Visitors (Guests)**: Need to browse the public bird observation timeline feed cleanly without being forced to register immediately.
 
-**Business Goals**
-- Foster a dynamic blogging platform with active user participation.
-- Build a sense of community through discussions and user engagement.
-- Ensure easy blog content management for owners.
+**Business & Platform Goals**
+- Foster an active, data-accurate citizen science ecosystem dedicated to recording local avian biodiversity.
+- Build a community matrix where rare sightings can be rapidly corroborated and verified by peers.
+- Guarantee seamless, secure content management controls for record authors and platform administrators [LO2.2].
 
 #### 2. Scope
 
-**[Features](#features)** (see below)
-
-**Content Requirements**
-- Blog post management (create, update, delete, and preview).
-- Comment moderation and management tools.
-- User account features (register, log in, edit/delete comments).
-- Notification system for comment approval status.
-- 404 error page for lost users.
+**Functional Features**
+- Full multi-user CRUD capability: Registered users can Create, Read, Update, and Delete their own bird sighting log entries [LO2.2].
+- Cloud-hosted multimedia integration: Native streaming pipelines via Cloudinary to attach high-quality field imagery to sighting logs.
+- Interactive Community Feedback: A relational nesting system allowing authenticated users to publish comments and corroborations underneath individual entries.
+- Backend Validation Architecture: Comprehensive forms validation checking input compliance (such as enforcing mandatory date rules to prevent database exceptions) [LO2.4].
+- Defensive UI Redirection: Custom-branded nature-themed `404` and `500` error templates to catch navigation faults and server exceptions gracefully [LO3.3].
 
 #### 3. Structure
 
 **Information Architecture**
-- **Navigation Menu**:
-  - Links to Home, Blog Posts, Login/Register, and Dashboard (for blog owners).
-- **Hierarchy**:
-  - Blog content displayed prominently for easy browsing.
-  - Clear call-to-action buttons for account creation and engagement (e.g., commenting).
+- **Global Dynamic Navigation Header**: Responsive Bootstrap navbar providing rapid traversal to Home Feed, Log Sighting, Register, Login, and Sign Out, dynamically toggling links based on active user authentication states [LO1.1, LO3.2].
+- **Visual Grid Hierarchy**: Sighting logs are organized in a clean multi-column card pattern, displaying core summary strings, author metadata badges, and high-impact imagery prominently for scannability [LO1.1].
 
-**User Flow**
-1. Guest users browse blog content → read posts and see commenter names.
-2. Guest users register for an account → log in to leave comments.
-3. Registered users leave comments → receive a pending approval notification.
-4. Blog owners create, update, and manage posts → moderate comments.
-5. Blog owners approve or reject comments → manage user interactions.
+**User Workflow Application Paths**
+1. **Unauthenticated Guest**: Views the home chronological timeline → Explores detailed sighting profiles → Prompted to log in if attempting to access log forms or post comments.
+2. **New Community Member**: Registers a secure profile via `django-allauth` → Logs in → Gains instant access to platform interactive states [LO3.1].
+3. **Authenticated Observer**: Accesses the "Log Sighting" view → Fills out validation-enforced form criteria (including selecting calendar dates) → Submits log → Receives success alert and views entry live on the main dashboard feed [LO2.3, LO2.4].
+4. **Record Author**: Navigates to their specific post → Enters secure update or delete paths → Accesses modification forms or triggers an absolute delete via a defensive UX JavaScript confirmation modal [LO2.2, LO3.3].
 
 #### 4. Skeleton
 
-**[Wireframes](#wireframes)** (see below)
+**[Wireframes](#wireframes)** (Detailed cross-device UX blueprint schematics and layout wireframes are explicitly documented and linked inside the `documentation/wireframes/` folder repository [LO1.5]).
+![screenshot](documentation/wireframes/Wireframes.png)
 
 #### 5. Surface
 
 **Visual Design Elements**
-- **[Colours](#colour-scheme)** (see below)
-- **[Typography](#typography)** (see below)
+- **[Colours](#colour-scheme)**: A curated, high-accessibility palette leveraging rich foliage greens, slate text rows, and clean canvas card layers to reflect the outdoor nature theme of the app [LO1.1].
+- **[Typography](#typography)**: Crisp, clean, modern typography weights scaled dynamically across varying device viewports using responsive typography principles to assist field workers accessing text screens outdoors [LO1.1].
 
-### Colour Scheme
 
-⚠️INSTRUCTIONS ⚠️
+### Colour Scheme [LO1.1]
 
-Explain your colors and color scheme. Consider adding a link and screenshot for your color scheme using [coolors](https://coolors.co/generate).
+The Twitcher App uses a carefully selected, nature-inspired palette to establish thematic continuity with birdwatching and the outdoors. These specific hex codes guarantee excellent element contrast across both dark and light sections, keeping readability high for field users checking text rows on mobile monitors outdoors.
 
-When you add a color to the palette, the URL is dynamically updated, making it easier for you to return back to your color palette later if needed. See example below:
+I used [coolors.co](https://coolors.co) to generate the official application palette:
 
-⚠️ --- END --- ⚠️
+*   `#111827` (Slate Black / Charcoal) - Primary body text and semantic navigation headers.
+*   `#198754` (Forest Green) - Primary theme branding color, main validation highlights, button actions, and bird logo assets.
+*   `#DC3545` (Crimson Red) - Secondary defensive design alerts, deletion modals, and 500 error indicators [LO3.3].
+*   `#FFC107` (Amber Gold) - Accent indicators, notification warning borders, and status tracking labels.
+*   `#F8F9FA` (Off-White / Light Canvas) - Background layers and card body rows to provide clean contrast against dark typography.
 
-I used [coolors.co](https://coolors.co/080708-3772ff-df2935-fdca40-e6e8e6) to generate my color palette.
+![Application Palette Layout Map](documentation/screenshots/coolors_palette.png)
 
-- `#000000` primary text.
-- `#3772FF` primary highlights.
-- `#DF2935` secondary text.
-- `#FDCA40` secondary highlights.
-
-![screenshot](documentation/coolors.png)
 
 ### Typography
 
