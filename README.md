@@ -37,7 +37,7 @@ Alternatively, open your project in Gitpod and run the server. Once the site is 
 
 🛑 --- END ---- 🛑
 
-![screenshot](documentation/mockup.png)
+![screenshot](documentation/screenshots/am_i_responsive.png)
 
 source: [twitcher_app amiresponsive](https://ui.dev/amiresponsive?url=https://twitcher-app-0de26394518f.herokuapp.com)
 
