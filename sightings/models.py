@@ -25,16 +25,20 @@ class Sighting(models.Model):
     slug = models.SlugField(
         max_length=200, unique=True, help_text="URL friendly shortcut string."
     )
-    species_name = models.CharField(max_length=150, verbose_name="Bird Species")
-    location_spotted = models.CharField(max_length=255, verbose_name="Location Details")
+    species_name = models.CharField(
+        max_length=150, verbose_name="Bird Species"
+    )
+    location_spotted = models.CharField(
+        max_length=255, verbose_name="Location Details"
+    )
     date_spotted = models.DateField(help_text="When did you see this bird?")
-    
-    # Swapped to modern CKEditor 5 field type targeting default configuration layout rules
+
+    # Swapped to modern CKEditor 5 field type targeting default configurations
     notes = CKEditor5Field('Field Notes', config_name='default')
 
-    # FIXED: Replaced standard models.ImageField with secure Cloudinary engine field
+    # FIXED: Replaced standard models.ImageField with secure Cloudinary engine
     image = CloudinaryField(
-        'image', 
+        'image',
         default='placeholder',
         help_text="Upload an image of the sighting (optional).",
     )
@@ -68,7 +72,9 @@ class Comment(models.Model):
     sighting = models.ForeignKey(
         Sighting, on_delete=models.CASCADE, related_name="comments"
     )
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="commenter"
+    )
     body = models.TextField(
         help_text="Write your comment or sighting verification here."
     )
@@ -79,4 +85,7 @@ class Comment(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Comment by {self.author.username} on {self.sighting.species_name}"
+        return (
+            f"Comment by {self.author.username} on "
+            f"{self.sighting.species_name}"
+        )
