@@ -107,7 +107,7 @@ I used [coolors.co](https://coolors.co) to generate the official application pal
 *   `#FFC107` (Amber Gold) - Accent indicators, notification warning borders, and status tracking labels.
 *   `#F8F9FA` (Off-White / Light Canvas) - Background layers and card body rows to provide clean contrast against dark typography.
 
-![Application Palette Layout Map](documentation/screenshots/coolors_palette.png)
+![Application Palette Layout Map](documentation/screenshots/coolors.png)
 
 
 ### Typography
