@@ -155,67 +155,55 @@ The matrix table below links individual core production page layouts directly to
 
 ## User Stories
 
-⚠️ INSTRUCTIONS ⚠️
+## User Stories [LO1.3]
 
-In this section, list all of your possible user stories for the project. Samples have been provided below using the example walkthrough project for your inspiration. Make sure to adjust to match your own project features!
+The development of the Twitcher App was strictly guided by user-centric Agile milestones. The matrix below documents the complete suite of User Stories mapped across the three primary system roles (Site Administrators, Registered Birders, and Public Guests) to outline expectations and verify implementation outcomes.
 
-⚠️ --- END --- ⚠️
+### User Stories Matrix Mapping
 
-| Target | Expectation | Outcome |
-| --- | --- | --- |
-| As a blog owner | I would like to create new blog posts with a title, featured image, and content | so that I can share my experiences with my audience. |
-| As a blog owner | I would like to update existing blog posts | so that I can correct or add new information to my previous stories. |
-| As a blog owner | I would like to delete blog posts | so that I can remove outdated or irrelevant content from my blog. |
-| As a blog owner | I would like to retrieve a list of all my published blog posts | so that I can manage them from a central dashboard. |
-| As a blog owner | I would like to preview a post as draft before publishing it | so that I can ensure formatting and content appear correctly. |
-| As a blog owner | I would like to review comments before they are published | so that I can filter out spam or inappropriate content. |
-| As a blog owner | I would like to approve or reject comments from users | so that I can maintain control over the discussion on my posts. |
-| As a blog owner | I would like to view a list of all comments (both approved and pending) | so that I can manage user engagement effectively. |
-| As a blog owner | I would like to edit or delete user comments | so that I can clean up or remove inappropriate responses after they've been posted. |
-| As a registered user | I would like to log in to the site | so that I can leave comments on blog posts. |
-| As a registered user | I would like to register for an account | so that I can become part of the community and engage with the blog. |
-| As a registered user | I would like to leave a comment on a blog post | so that I can share my thoughts or ask questions about the owner's experiences. |
-| As a registered user | I would like my comment to show my name and the timestamp | so that others can see who I am and when I left the comment. |
-| As a registered user | I would like to receive a notification or message saying my comment is pending approval | so that I understand it hasn't been posted immediately. |
-| As a registered user | I would like to edit or delete my own comments | so that I can fix mistakes or retract my statement. |
-| As a guest user | I would like to read blog posts without registering | so that I can enjoy the content without needing to log in. |
-| As a guest user | I would like to browse past posts | so that I can explore the blog's full content history. |
-| As a guest user | I would like to register for an account | so that I can participate in the community by leaving comments on posts. |
-| As a guest user | I would like to see the names of other commenters on posts | so that I can get a sense of community interaction before registering. |
-| As a user | I would like to see a 404 error page if I get lost | so that it's obvious that I've stumbled upon a page that doesn't exist. |
+| Target (As a...) | Expectation (I would like to...) | Outcome (so that...) | Status |
+| :--- | :--- | :--- | :--- |
+| **Site Administrator** | Create, inspect, and moderate all community record logs from a central control hub | I can maintain platform data standards and clean up invalid wildlife entries. | **Done** |
+| **Site Administrator** | Hard-delete or force-edit any public comment row | I can instantly remove inappropriate responses or spam from sighting threads. | **Done** |
+| **Registered Birder** | Register a secure user account via standard authentication forms | I can become a verified member of the local citizen-science birding community [LO3.1]. | **Done** |
+| **Registered Birder** | Log in and out of my active profile securely at any time | My authentication state is accurately reflected across all layout headers [LO3.2]. | **Done** |
+| **Registered Birder** | Publish a new bird sighting log featuring titles, species criteria, locations, calendar dates, and images | I can share my field observations and stream wildlife photos safely to Cloudinary [LO1.2]. | **Done** |
+| **Registered Birder** | Modify or update my existing bird observation entries | I can correct species identification mistakes or append rich-text field notes later [LO2.2]. | **Done** |
+| **Registered Birder** | Delete my own bird logging records entirely | I can remove accidental entries, backed by a defensive design confirmation modal [LO3.3]. | **Done** |
+| **Registered Birder** | Leave text comments and corroboration notes under peer sighting records | I can contribute to field note verifications and share knowledge with other twitchers. | **Done** |
+| **Registered Birder** | Edit or retract my own comment text lines | I can correct typographical errors or clean up my personal conversational footprint. | **Done** |
+| **Public Guest User** | Browse the main chronological timeline feed of bird sightings | I can explore recent local wildlife activity without being forced to sign up immediately. | **Done** |
+| **Public Guest User** | Access detailed sighting profile screens to inspect media and rich-text field observations | I can check species sightings, view peer comments, and read field metadata details cleanly. | **Done** |
+| **Public Guest User** | See explicit visual indicators prompting me to log in when trying to access forms | I understand that advanced interactive states are securely restricted to active members [LO3.3]. | **Done** |
+| **All App Users** | View a branded, custom 404 error page if I navigate to an unmapped path | I am notified gracefully that I am lost and am provided an immediate link back to the home feed [LO3.3]. | **Done** |
+| **All App Users** | Encounter a graceful 500 error card screen during unexpected server exceptions | The application uses defensive design to preserve layout cohesion instead of crashing out raw code [LO3.3]. | **Done** |
 
-## Features
 
-⚠️ INSTRUCTIONS ⚠️
+## Features [LO2.2]
 
-In this section, you should go over the different parts of your project, and describe each feature. You should explain what value each of the features provides for the user, focusing on your target audience, what they want to achieve, and how your project can help them achieve these things.
+The Twitcher App incorporates an array of robust, full-stack interactive features built to provide birdwatchers and field twitchers with an accessible, rapid-utility data-logging hub. Each capability focuses on delivering user-centric data integrity and explicit feedback [LO1.1].
 
-**IMPORTANT**: Remember to always include a screenshot of each individual feature!
+### Existing Features Matrix
 
-⚠️ --- END --- ⚠️
+| Feature Module | Operational Value & Target Audience Purpose | Screenshot Evidence Reference [LO1.5] |
+| :--- | :--- | :--- |
+| **User Account Registration** | Account generation managed securely via `django-allauth`. Enables field observers to establish individual user profiles so they can contribute data [LO3.1]. | ![User Registration Page](documentation/screenshots/user_registration_page.png) |
+| **Secure Sign In Authentication** | Verifies credentials, logs birders into active sessions, and dynamically shifts global navbar links to grant authorized CRUD permissions [LO3.2]. | ![User Login Page](documentation/screenshots/user_login_page.png) |
+| **Explicit Session Sign Out** | Terminates authenticated user active sessions cleanly, clearing authorization session tokens and reverting access states to read-only guest filters [LO3.2]. | *(Handled via Secure Navbar Session Trigger Row)* |
+| **Chronological Sighting Timeline** | The main home grid layout showcases summary bird cards including high-impact Cloudinary media, species titles, location metadata badges, and author logs [LO1.1]. | ![Home Timeline Feed Dashboard](documentation/screenshots/home_timeline.png) |
+| **Comprehensive Observation Profile** | Provides expanded sighting details, enabling users to read full rich-text field notes, check specific observation dates, and scroll through community feedback [LO1.2]. | ![Sighting Detail Page Layout](documentation/screenshots/sighting_detail_page.png) |
+| **Responsive Timeline Pagination** | Controls database query loads by slicing entries into paginated grid rows. Keeps mobile loading times fast for observers browsing field data on the move [LO1.1]. | *(Integrated into Home Feed Navigation Footer)* |
+| **Log Bird Sighting (Frontend Create)** | Registered members access a dedicated frontend form to report live observations, attach titles, configure tags, and upload image payloads directly [LO1.2, LO2.2]. | *(Rendered on Form Submission Sheet Interface)* |
+| **Backend Validation Date Picker** | Enforces structural integrity by embedding an HTML5 calendar date picker inside forms, preventing null values and eliminating database crashes [LO2.4]. | *(Configured inside SightingForm Widget Matrix)* |
+| **Sighting Modification (Frontend Update)**| Authors access pre-populated frontend editing forms to refine species data, alter locations, or append field logs instantly without accessing admin dashboards [LO2.2]. | *(Rendered via Authorized Edit View Routing)* |
+| **Defensive Record Wipe (Frontend Delete)**| Record owners can remove their data. The destructive action is guarded by a defensive JavaScript confirmation modal to avoid accidental data loss [LO3.3]. | *(Protected via UI Trigger Button Confirmation Modal)* |
+| **Interactive Community Comments** | Tethers field comments and corroboration notes to individual parent posts using a relational **1:N** database mapping constraint, fostering citizen-science debate [LO2.1]. | ![Nested Peer Comments Component](documentation/screenshots/nested_peer_comments.png) |
+| **About Biography Context Sheet** | Renders a clean markdown profile detailing the application's core citizen-science mission parameters and operational rationale [LO1.5]. | ![About Biography Page](documentation/screenshots/about_page.png) |
+| **Real-Time Notification Alerts** | Leverages the Django Messages framework to trigger immediate, accessible alert popups at the top of the viewport on any database change (e.g., successful creation) [LO2.3]. | *(Fired dynamically across view state actions)* |
+| **Custom Branded 404 Defensive Redirect**| Intercepts broken, dead, or unmapped URL path strings and reroutes users to a custom nature-themed card offering a fast link straight back to the home timeline [LO3.3]. | *(Rendered via Global Project handler404 views.py)* |
+| **Custom Branded 500 Server Fallback** | Catches unexpected server runtime exceptions or database connectivity gaps gracefully, preserving template styling instead of exposing naked raw trace logs [LO3.3]. | *(Rendered via Global Project handler500 views.py)* |
+| **Secure Production Cloud Deployment** | Fully deployed to Heroku with `DEBUG = False`. Leverages an isolated, untracked `env.py` schema layout to hide production keys from repository trees [LO6.1, LO6.3]. | *(Live Production Host Environment Dashboard)* |
 
-### Existing Features
-
-| Feature | Notes | Screenshot |
-| --- | --- | --- |
-| Register | Authentication is handled by allauth, allowing users to register accounts. | ![screenshot](documentation/features/register.png) |
-| Login | Authentication is handled by allauth, allowing users to log in to their existing accounts. | ![screenshot](documentation/features/login.png) |
-| Logout | Authentication is handled by allauth, allowing users to log out of their accounts. | ![screenshot](documentation/features/logout.png) |
-| Blog List | The homepage displays basic information about blog posts, including image, title, author, date, and a brief excerpt. | ![screenshot](documentation/features/blog-list.png) |
-| View Post | Users can view the full blog post details, including any comments. | ![screenshot](documentation/features/view-post.png) |
-| Pagination | Blog posts are displayed in pages, with six posts per page. This provides better navigation for users through the post list. | ![screenshot](documentation/features/pagination.png) |
-| Add Comments | Authenticated visitors can comment on blog posts; comments require approval before being published. | ![screenshot](documentation/features/add-comment.png) |
-| Edit Comments | Authenticated visitors can edit their own comments. | ![screenshot](documentation/features/edit-comment.png) |
-| Delete Comments | Authenticated visitors can delete their own comments. | ![screenshot](documentation/features/delete-comment.png) |
-| Comment Approvals | Admins can approve or disapprove comments submitted by users before they are visible on the blog post. | ![screenshot](documentation/features/comment-approval.png) |
-| Create Post | Site owners can create/publish blog posts, including setting a featured image using Cloudinary, all from the Django admin dashboard. | ![screenshot](documentation/features/create-post.png) |
-| Update Post | Site owners can update/manage blog posts from the Django admin dashboard. | ![screenshot](documentation/features/update-post.png) |
-| Delete Post | Site owners can delete blog posts from the Django admin dashboard. | ![screenshot](documentation/features/delete-post.png) |
-| About Page | The About page displays the latest information about the site author, along with the option for visitors to send collaboration requests. | ![screenshot](documentation/features/about.png) |
-| Collaboration Requests | Visitors can submit collaboration requests from the *About* page, which are later reviewed by the admin. | ![screenshot](documentation/features/collaboration.png) |
-| User Feedback | Clear and obvious Django messages are used to provide feedback to user actions. | ![screenshot](documentation/features/messages.png) |
-| Heroku Deployment | The site is fully deployed to Heroku, making it accessible online and easy to manage. | ![screenshot](documentation/features/heroku.png) |
-| 404 | The 404 error page will indicate when a user has navigated to a page that doesn't exist, replacing the default Heroku 404 page with one that ties into the site's look and feel. | ![screenshot](documentation/features/404.png) |
 
 ### Future Features
 
