@@ -22,16 +22,17 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', include('about.urls'), name='about-urls'),
-    path('ckeditor5/', include('django_ckeditor_5.urls')),  # CKEditor 5 URL tree
-    path('accounts/', include('allauth.urls')), # <-- ALLAUTH URL PATHWAY TREE (LO1.2)
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
+    # ALLAUTH URL PATHWAY TREE (LO1.2)
+    path('accounts/', include('allauth.urls')),
     path('', include('sightings.urls'), name='sighting-urls'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(
+        settings.STATIC_URL, document_root=settings.STATIC_ROOT
+    )
 
 # Custom error handlers
-
 handler404 = 'twitcher_project.views.handler404'
 handler500 = 'twitcher_project.views.handler500'
-
