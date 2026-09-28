@@ -110,13 +110,19 @@ I used [coolors.co](https://coolors.co) to generate the official application pal
 ![Application Palette Layout Map](documentation/screenshots/coolors.png)
 
 
-### Typography
+### Typography and Icons [LO1.1]
 
-⚠️ INSTRUCTIONS ⚠️
+To guarantee high readability standards across varying device screen sizes, clean typography and semantic vector icon libraries were carefully implemented throughout the user interface.
 
-Explain any fonts and icon libraries used, like **Google Fonts**, **Font Awesome**, etc. Consider adding a link to each font used, the Font Awesome site (if used), or similar icon library.
+#### Typography
+*   **Primary Headers and Titles**: The [Montserrat](https://google.com) font family was selected for all major system headlines, card titles, and branding rows. Its bold, geometric weights establish a strong visual hierarchy and immediate scannability for page titles.
+*   **Body and Secondary Text**: The [Lato](https://google.com) font family was applied to all primary body copy, descriptive text rows, form field labels, and comment blocks. This clean, sans-serif typeface maintains excellent structural legibility on mobile viewports under outdoor glare.
+*   **Fallback Stack**: Standard `sans-serif` system rules were set as a fallback layer across global style configurations to maintain interface cohesion if external web assets experience latency.
 
-⚠️ --- END --- ⚠️
+#### Interactive Icons
+*   [Font Awesome 6 Libraries](https://fontawesome.com) were integrated across global templates to supply clear, accessible visual indicators. 
+*   Icons are strategically paired with text strings (such as navigation controls, user profile indicators, form field headers, and social media anchor icons in the footer) to improve interface accessibility and intuitive traversal paths for all users.
+
 
 - [Montserrat](https://fonts.google.com/specimen/Montserrat) was used for the primary headers and titles.
 - [Lato](https://fonts.google.com/specimen/Lato) was used for all other secondary text.
@@ -133,15 +139,19 @@ If you've created wireframes or mock-ups, use this section to display screenshot
 To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
 I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
 
-| Page | Mobile | Tablet | Desktop |
-| --- | --- | --- | --- |
-| Register | ![screenshot](documentation/wireframes/mobile-register.png) | ![screenshot](documentation/wireframes/tablet-register.png) | ![screenshot](documentation/wireframes/desktop-register.png) |
-| Login | ![screenshot](documentation/wireframes/mobile-login.png) | ![screenshot](documentation/wireframes/tablet-login.png) | ![screenshot](documentation/wireframes/desktop-login.png) |
-| Home | ![screenshot](documentation/wireframes/mobile-home.png) | ![screenshot](documentation/wireframes/tablet-home.png) | ![screenshot](documentation/wireframes/desktop-home.png) |
-| Add Blog | ![screenshot](documentation/wireframes/mobile-add-blog.png) | ![screenshot](documentation/wireframes/tablet-add-blog.png) | ![screenshot](documentation/wireframes/desktop-add-blog.png) |
-| Edit Blog | ![screenshot](documentation/wireframes/mobile-edit-blog.png) | ![screenshot](documentation/wireframes/tablet-edit-blog.png) | ![screenshot](documentation/wireframes/desktop-edit-blog.png) |
-| Blog Post | ![screenshot](documentation/wireframes/mobile-blog-post.png) | ![screenshot](documentation/wireframes/tablet-blog-post.png) | ![screenshot](documentation/wireframes/desktop-blog-post.png) |
-| 404 | ![screenshot](documentation/wireframes/mobile-404.png) | ![screenshot](documentation/wireframes/tablet-404.png) | ![screenshot](documentation/wireframes/desktop-404.png) |
+### Visual Interface Viewports and Layout Matrix [LO1.5]
+
+The matrix table below links individual core production page layouts directly to their corresponding cross-viewport responsiveness captures stored inside your documentation workspace repository folders:
+
+| Page / Component View | Mobile Viewport Capture | Desktop Viewport Capture |
+| :--- | :--- | :--- |
+| **Home Timeline Feed** | ![Home Page Mobile](documentation/wireframes/5_home_page_mobile.png) | ![Home Page Desktop](documentation/wireframes/1_home_page_desktop.png) |
+| **Sighting Detail Page** | ![Sighting Detail Mobile](documentation/wireframes/6_sighting_detail_mobile.png) | ![Sighting Detail Desktop](documentation/wireframes/2_sighting_detail_desktop.png) |
+| **About Biography Page** | ![About Page Mobile](documentation/wireframes/7_about_page_mobile.png) | ![About Page Desktop](documentation/wireframes/3_about_page_desktop.png) |
+| **Authentication Forms** | ![Authentication Mobile](documentation/wireframes/8_sign_in_register_mobile.png) | ![Authentication Desktop](documentation/wireframes/4_sign_in_desktop.png) |
+| **Global Layout Footer** | ![Footer Component Mobile](documentation/wireframes/9_footer_mobile.png) | *(Unified Multi-Device Asset)* |
+
+
 
 ## User Stories
 
