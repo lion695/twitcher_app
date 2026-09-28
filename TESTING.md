@@ -33,17 +33,72 @@ Destroying test database for alias 'default'...
 
 ## 2. Code Syntax Validation & Linter Compliance [LO1.4]
 
-To ensure production-standard clean layout execution, code files were run through industry-recognized validators. All custom scripts are completely free of errors, trailing whitespaces, and length exceptions.
+To ensure production-standard code execution and full compliance with Code Institute guidelines, all custom scripts across the workspace were run through industry-standard syntax validators. Every single file has achieved an error-free, flawless pass.
+
+### Code Validation Matrix
 
 | Layer | Validation Authority Used | Target Evaluation Assets Checked | Status |
 | :--- | :--- | :--- | :--- |
 | **Python** | [Code Institute PEP8 Linter](https://herokuapp.com) | `models.py`, `views.py`, `forms.py`, `tests.py`, `urls.py` | **100% Pass / All Clear** |
-| **HTML5** | [W3C Markup Validation Service](https://w3.org) | Rendered home feed template source, sighting details source | **100% Pass / All Clear** |
+| **HTML5** | [W3C Markup Validation Service](https://w3.org) | Live browser-rendered home timeline and detail views | **100% Pass / All Clear** |
 | **CSS3** | [W3C Jigsaw CSS Validator](https://w3.org) | `static/css/style.css` custom rule blocks | **100% Pass / All Clear** |
 | **JavaScript**| [JSHint Quality Static Linter](https://jshint.com) | Frontend defensive delete confirmation modal script | **100% Pass / All Clear** |
 
-### Python Linter Verification Details
-All file rows have been perfectly line-wrapped under the **79-character limit** requirement. Stray trailing whitespace configurations (`W291` / `W293`) have been completely scrubbed from all custom application and root project views.
+---
+
+### Official Validation Evidence Captures [LO1.4]
+
+#### A. Python PEP8 Linting Results
+All custom backend logical mechanics sit safely below the 79-character row restriction limit with zero trailing whitespace violations.
+
+##### 1. Forms Logic Validation (`sightings/forms.py`)
+![Forms Validation Pass](documentation/linter_test/forms_clear.png)
+
+##### 2. Models Schema Validation (`sightings/models.py`)
+![Models Validation Pass](documentation/linter_test/models_clear.png)
+
+##### 3. Automated Test Suite Validation (`sightings/tests.py`)
+![Automated Tests Validation Pass](documentation/linter_test/tests.py_clear.png)
+
+##### 4. Root Project Routing Validation (`twitcher_project/urls.py`)
+![Project URLs Validation Pass](documentation/linter_test/twitcher_project_urls_clear.png)
+
+##### 5. Root Project Defensive Views Validation (`twitcher_project/views.py`)
+![Project Views Validation Pass](documentation/linter_test/twitcher_project_views_clear.png)
+
+##### 6. App Core Routing Validation (`sightings/urls.py`)
+![App URLs Validation Pass](documentation/linter_test/urls_clear.png)
+
+##### 7. App Backend Controller Logic Validation (`sightings/views.py`)
+![App Views Validation Pass](documentation/linter_test/views_clear.png)
+
+---
+
+#### B. HTML5 Rendered Layout Validation
+The live browser-rendered HTML5 markup structures for key navigation entry points were fed directly into the official W3C Validator using the Direct Input utility suite. All semantic elements and machine-readable `<time>` elements parse perfectly.
+
+##### 1. Home Feed Interface Rendered Markup Validation
+![Home Feed HTML Validation Pass](documentation/html_&_css_test/home_html_clear.png)
+
+##### 2. Live Deployment Build Global Structure Validation
+![Live Site Environment Pass](documentation/html_&_css_test/live_site_clear.png)
+
+---
+
+#### C. CSS3 Custom Stylesheet Validation
+Verified that your custom presentation rules, colors, and layout rules parse with absolute conformity to universal web layout standards.
+
+##### 1. Custom Theme Presentation Style Sheet Validation (`static/css/style.css`)
+![W3C Jigsaw CSS3 Validator Pass](documentation/html_&_css_test/css_validation.png)
+
+---
+
+#### D. JavaScript Static Analysis (JSHint)
+The static checking run demonstrates clean metrics with zero unmapped values, zero unclosed hooks, and zero structural syntax warnings.
+
+##### 1. Defensive Interaction Scripts Static Analysis Check (`static/js/script.js`)
+![JSHint JavaScript Linter Pass](documentation/html_&_css_test/js_clean.png)
+
 
 ---
 

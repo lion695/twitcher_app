@@ -642,7 +642,7 @@ A few examples have been provided below to give you some ideas on how to do your
 ### Acknowledgements
 
 - I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) for the support throughout the development of this project. Master classes that I attended with him really helped put things into perspective and he was always on hand if needed.
-- I would like to thank the [Code Institute](https://codeinstitute.net) Tutor Team for their assistance with troubleshooting and debugging some project issues. In particular my cohort facilitator Marko Tot who's guidance throughout has been amazing, he too was always on hand when needed.  
+- I would like to thank the [Code Institute](https://codeinstitute.net) Tutor Team for their assistance with troubleshooting and debugging some project issues. In particular my cohort facilitator [Marko Tot](https://github.com/tmarkec/) who's guidance throughout has been amazing, he too was always on hand when needed.  
 - I would like to thank the [Code Institute Discord community](https://discord-portal.codeinstitute.net) for the moral support; it kept me going during periods of self doubt and impostor syndrome.
 - I would like to thank my partner, for believing in me, and allowing me to make this transition into software development.
 
