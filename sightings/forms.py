@@ -21,7 +21,10 @@ class CommentForm(forms.ModelForm):
         self.fields["body"].widget = forms.Textarea(
             attrs={
                 "class": "form-control shadow-sm border-success",
-                "placeholder": "Share your field notes, corroborate this sighting, or leave a message...",
+                "placeholder": (
+                    "Share your field notes, corroborate this sighting, "
+                    "or leave a message..."
+                ),
                 "rows": 3,
             }
         )
@@ -37,7 +40,6 @@ class SightingForm(forms.ModelForm):
 
     class Meta:
         model = Sighting
-        # FIXED: Injected 'date_spotted' to resolve database IntegrityError constraints (LO2.4)
         fields = [
             "title",
             "species_name",
@@ -52,19 +54,21 @@ class SightingForm(forms.ModelForm):
             "title": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "e.g., Golden Eagle spotted over the ridge",
+                    "placeholder": "e.g., Golden Eagle over the ridge",
                 }
             ),
             "species_name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "e.g., Golden Eagle"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "e.g., Golden Eagle",
+                }
             ),
             "location_spotted": forms.TextInput(
                 attrs={
                     "class": "form-control",
                     "placeholder": "e.g., Peak District, Derbyshire",
                 }
-            ),  # FIXED: Closed out structural nesting block cleanly
-            # FIXED: Closed out attribute keys cleanly to resolve formatting crashes
+            ),
             "date_spotted": forms.DateInput(
                 attrs={
                     "class": "form-control",
