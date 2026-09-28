@@ -205,32 +205,17 @@ The Twitcher App incorporates an array of robust, full-stack interactive feature
 | **Secure Production Cloud Deployment** | Fully deployed to Heroku with `DEBUG = False`. Leverages an isolated, untracked `env.py` schema layout to hide production keys from repository trees [LO6.1, LO6.3]. | *(Live Production Host Environment Dashboard)* |
 
 
-### Future Features
+### Future Features & Product Roadmap [LO1.3]
 
-⚠️ INSTRUCTIONS ⚠️
+While the current Minimum Viable Product (MVP) provides a secure, fully verified, and highly stable full-stack data logging platform, the following features are planned for future development cycles to expand community utility and deepen intelligence integration:
 
-Do you have additional ideas that you'd like to include on your project in the future? Fantastic, list them here! It's always great to have plans for future improvements. Consider adding any helpful links or notes to help remind you in the future, if you revisit the project in a couple years.
+*   **AI Regional Habitat Guide Generator (Deferred Sprint Milestone - `Won't Have`)**: Re-incorporate the automated regional habitat guide generator by integrating the OpenAI API or a specialized Hugging Face computer vision model. This will allow users to instantly generate localized species checklists, nesting tip matrices, and migration forecasts based on their logged bird coordinates [LO8.3].
+*   **Interactive Sighting Map Grid (Geographical Filtering)**: Integrate the Leaflet.js or Google Maps API to plot logged bird sightings onto a dynamic, visual map interface. This will enable field observers to filter recent avian data based on geographic proximity or county borders.
+*   **Avian Species Search and Tag Filters**: Introduce a high-performance frontend search indexing bar alongside categorical metadata tags (e.g., *Raptors*, *Waterfowl*, *Migratory*). This will allow twitchers to isolate specific records rapidly without scrolling the global chronological feed.
+*   **Community Sighting Verification System ("Upvoting")**: Implement a peer-review voting counter mechanism underneath individual logs. This will allow verified community birders to securely "Upvote" or flag rare bird sightings, establishing an organic data-trust rating directly on the dashboard card.
+*   **Nested Comment Threads & Direct Replies**: Upgrade the existing One-to-Many (`1:N`) commenting model to allow nested multi-tiered discussion replies [LO2.1]. This will enable observers to discuss specific field note details cleanly without cluttering the primary sighting profile.
+*   **Time-Sensitive Email Subscriptions**: Connect live email pipelines via SendGrid to allow twitchers to subscribe to real-time alerts. Users would receive instant email notifications the moment an entry categorized as a "Rare Species Sighting" writes to the regional database tables.
 
-A few examples are listed below to align with possible ways to improve on the sample walkthrough project, to give you some inspiration.
-
-⚠️ --- END ---⚠️
-
-- **Post Categories/Tags**: Allow users to categorize and tag blog posts, making it easier for visitors to filter content based on their interests.
-- **Post Search Functionality**: Add a search bar for users to quickly find posts by keywords or phrases.
-- **Post Likes/Dislikes or Upvotes**: Implement a "like" or "upvote" system for blog posts to encourage user engagement and give feedback to the author.
-- **User Profiles**: Create personalized user profiles where authenticated users can view their comments, liked posts, and account information.
-- **Comment Replies & Threads**: Enable users to reply to comments, creating nested comment threads for better discussions.
-- **Post Sharing**: Add social media sharing buttons (e.g., Twitter, Facebook, LinkedIn) for users to share blog posts.
-- **Notifications**: Implement a notification system that alerts users when their comments are approved, when new comments are made on a post they've commented on, or when new posts are published.
-- **Email Subscriptions**: Allow users to subscribe to receive email notifications for new posts, updates, or newsletters.
-- **Post Analytics**: Provide post authors with analytics such as views, time spent reading, and engagement rates.
-- **Multilingual Support**: Add the ability to write and view blog posts in multiple languages, broadening the audience.
-- **Related Posts Recommendations**: Show related posts at the bottom of a blog post to encourage further reading and keep users engaged.
-- **Content Flagging/Reporting**: Allow users to flag or report inappropriate content (comments or posts) for moderation.
-- **SEO Optimization**: Implement features for SEO, such as meta tags, custom URLs, and keywords for better search engine ranking.
-- **User Dashboard**: Provide users with a dashboard to track their activity, such as comments made, likes received, and blog posts they’ve interacted with.
-- **Admin Dashboard Analytics**: Provide site admins with an analytics dashboard showing user activity, popular posts, most commented articles, etc.
-- **Custom Themes for Users**: Allow users to customize the visual theme of the site (colors, fonts, etc.) to suit their preferences.
 
 ## Tools & Technologies
 
@@ -250,7 +235,7 @@ A few examples are listed below to align with possible ways to improve on the sa
 | [![badge](https://img.shields.io/badge/PostgreSQL-grey?logo=postgresql&logoColor=4169E1)](https://www.postgresql.org) | Relational database management. |
 | [![badge](https://img.shields.io/badge/Cloudinary-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com) | Online static file storage. |
 | [![badge](https://img.shields.io/badge/WhiteNoise-grey?logo=python&logoColor=FFFFFF)](https://whitenoise.readthedocs.io) | Serving static files with Heroku. |
-| [![badge](https://img.shields.io/badge/ChatGPT-grey?logo=openai&logoColor=75A99C)](https://chat.openai.com) | Help debug, troubleshoot, and explain things. |
+| [![badge](https://img.shields.io/badge/ChatGPT-grey?logo=openai&logoColor=75A99C)](https://chat.openai.com) | Help debug, troubleshoot, and explain things. Used also to generate custom site logo and favicon file. |
 | [![badge](https://img.shields.io/badge/Gemini-grey?logo=googlegemini&logoColor=#8E75B2)](https://gemini.google.com) | Help debug, troubleshoot, and explain things. |
 
 ⚠️ NOTE ⚠️
