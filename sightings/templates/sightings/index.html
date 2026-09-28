@@ -3,93 +3,103 @@
 {% block title %}Recent Bird Sightings - Twitcher App{% endblock %}
 
 {% block content %}
-<header class="row mb-4">
-    <div class="col-12">
-        <h1 class="display-5 fw-bold text-dark">Recent Bird Sightings</h1>
-        <p class="text-muted">Explore recent wild avian observations documented by our local community.</p>
-    </div>
-</header>
+
+<header class="row mb-4"> <div class="col-12"> <h1 class="display-5 fw-bold text-dark">Recent Bird Sightings</h1> <p class="text-muted">Explore recent wild avian observations documented by our local community.</p> </div> </header>
 
 <!-- Sighting Grid Layout Section -->
-<section class="row">
-    {% for sighting in sighting_list %}
-    <article class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 shadow-sm border-0">
-            <div class="card-body d-flex flex-column">
-                <span class="badge bg-secondary align-self-start mb-2">{{ sighting.species_name }}</span>
 
-                <!-- Updated Title Layer: Clickable anchor element routing to detail views (LO1.1) -->
-                <h2 class="card-title h4 text-success fw-bold mb-2">
-                    <a href="{% url 'sighting_detail' sighting.slug %}"
-                        class="text-decoration-none text-success text-hover-underline">
-                        {{ sighting.title }}
-                    </a>
-                </h2>
+<div class="row"> {% for sighting in sighting_list %} <article class="col-md-6 col-lg-4 mb-4"> <div class="card h-100 shadow-sm border-0"> <div class="card-body d-flex flex-column"> <span class="badge bg-secondary align-self-start mb-2">{{ sighting.species_name }}</span>
 
-                <p class="text-muted small mb-3"><i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ sighting.location_spotted }}</p>
-                <p class="card-text text-dark flex-grow-1">
-                    {% if sighting.summary %}
-                    {{ sighting.summary }}
-                    {% else %}
-                    {{ sighting.notes|truncatewords:20|striptags }}
-                    {% endif %}
-                </p>
-                <hr class="text-muted my-2">
-                <footer class="d-flex justify-content-between align-items-center text-muted small">
-                    <span>By: <strong>{{ sighting.author.username }}</strong></span>
-                    <time><i class="fa-regular fa-calendar me-1"></i> {{ sighting.date_spotted }}</time>
-                </footer>
-            </div>
-        </div>
-    </article>
-    {% empty %}
-    <div class="col-12">
-        <div class="alert alert-info text-center shadow-sm" role="alert">
-            No published bird sightings logged yet. Check back soon or log in to document the first find!
+            <!-- Updated Title Layer: Clickable anchor element routing to detail views (LO1.1) -->
+            <h2 class="card-title h4 text-success fw-bold mb-2">
+                <a href="{% url 'sighting_detail' sighting.slug %}"
+                    class="text-decoration-none text-success text-hover-underline">
+                    {{ sighting.title }}
+                </a>
+            </h2>
+
+            <p class="text-muted small mb-3">
+                <i class="fa-solid fa-location-dot me-1 text-danger"></i>
+                {{ sighting.location_spotted }}
+            </p>
+
+            <p class="card-text text-dark flex-grow-1">
+                {% if sighting.summary %}
+                {{ sighting.summary }}
+                {% else %}
+                {{ sighting.notes|truncatewords:20|striptags }}
+                {% endif %}
+            </p>
+
+            <hr class="text-muted my-2">
+
+            <footer class="d-flex justify-content-between align-items-center text-muted small">
+                <span>By: <strong>{{ sighting.author.username }}</strong></span>
+                <span>
+                    <i
+                        class="fa-regular fa-calendar me-1"
+                        aria-hidden="true"></i>
+                    <time datetime="{{ sighting.date_spotted|date:'Y-m-d' }}">
+                        {{ sighting.date_spotted|date:"M. d, Y" }}
+                    </time>
+                </span>
+            </footer>
         </div>
     </div>
-    {% endfor %}
-</section>
+</article>
+{% empty %}
+<div class="col-12">
+    <div class="alert alert-info text-center shadow-sm" role="alert">
+        No published bird sightings logged yet. Check back soon or log in to document the first find!
+    </div>
+</div>
+{% endfor %}
+
+</div>
 
 <!-- Accessible Responsive Bootstrap 5 Pagination Interface (LO1.1 Compliance) -->
+
 {% if is_paginated %}
-<nav aria-label="Sighting feed page navigation" class="my-4">
-    <ul class="pagination justify-content-center">
-        
-        <!-- Previous Page Button Controller Layer -->
-        {% if page_obj.has_previous %}
-            <li class="page-item">
-                <a class="page-link shadow-sm border-success text-success fw-bold" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous Page">
-                    <span aria-hidden="true">&laquo;</span> PREV
-                </a>
-            </li>
-        {% else %}
-            <li class="page-item disabled">
-                <span class="page-link text-muted bg-light">&laquo; PREV</span>
-            </li>
-        {% endif %}
 
-        <!-- Current Page Number Indicator Tracker Box -->
-        <li class="page-item disabled">
-            <span class="page-link bg-success text-white fw-bold shadow-sm">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-            </span>
+<nav aria-label="Sighting feed page navigation" class="my-4"> <ul class="pagination justify-content-center">
+
+    <!-- Previous Page Button Controller Layer -->
+    {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link shadow-sm border-success text-success fw-bold"
+                href="?page={{ page_obj.previous_page_number }}"
+                aria-label="Previous Page">
+                <span aria-hidden="true">&laquo;</span> PREV
+            </a>
         </li>
+    {% else %}
+        <li class="page-item disabled">
+            <span class="page-link text-muted bg-light">&laquo; PREV</span>
+        </li>
+    {% endif %}
 
-        <!-- Next Page Button Controller Layer -->
-        {% if page_obj.has_next %}
-            <li class="page-item">
-                <a class="page-link shadow-sm border-success text-success fw-bold" href="?page={{ page_obj.next_page_number }}" aria-label="Next Page">
-                    NEXT <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        {% else %}
-            <li class="page-item disabled">
-                <span class="page-link text-muted bg-light">NEXT &raquo;</span>
-            </li>
-        {% endif %}
+    <!-- Current Page Number Indicator Tracker Box -->
+    <li class="page-item disabled">
+        <span class="page-link bg-success text-white fw-bold shadow-sm">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+    </li>
 
-    </ul>
-</nav>
-{% endif %}
-{% endblock %}
+    <!-- Next Page Button Controller Layer -->
+    {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link shadow-sm border-success text-success fw-bold"
+                href="?page={{ page_obj.next_page_number }}"
+                aria-label="Next Page">
+                NEXT <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <span class="page-link text-muted bg-light">NEXT &raquo;</span>
+        </li>
+    {% endif %}
+
+</ul>
+
+</nav> {% endif %} {% endblock %}
