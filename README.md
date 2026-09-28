@@ -238,15 +238,6 @@ While the current Minimum Viable Product (MVP) provides a secure, fully verified
 | [![badge](https://img.shields.io/badge/ChatGPT-grey?logo=openai&logoColor=75A99C)](https://chat.openai.com) | Help debug, troubleshoot, and explain things. Used also to generate custom site logo and favicon file. |
 | [![badge](https://img.shields.io/badge/Gemini-grey?logo=googlegemini&logoColor=#8E75B2)](https://gemini.google.com) | Help debug, troubleshoot, and explain things. |
 
-⚠️ NOTE ⚠️
-
-Want to add more?
-
-- Tutorial: https://shields.io/badges/static-badge
-- Icons/Logos: https://simpleicons.org
-  - FYI: not all logos are available to use
-
-🛑 --- END --- 🛑
 
 ## Database Design
 
@@ -273,25 +264,16 @@ The diagram below reflects the final production relational database model struct
 *   **slug (Unique Field Index Constraint)**: The slug text string attribute within the sightings\_sighting model is configured with a strict unique=True modifier constraint. This indexes the column globally within the database grid, guaranteeing that clean, human-readable SEO search strings resolve to unique records without overlapping routes.
 
 
-![screenshot](documentation/erd.png)
-
-⚠️ INSTRUCTIONS ⚠️
-
-Using your defined models, create an ERD with the relationships identified. A couple of recommendations for building your own free ERDs:
-- [Lucidchart](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning)
-- [Draw.io](https://draw.io)
-
 Looking for an interactive version of your ERD? Consider using a [`Mermaid flowchart`](https://mermaid.live). To simplify the process, you can ask ChatGPT (or similar) the following prompt:
 
 > ChatGPT Prompt:  
 > "Generate a Markdown syntax Mermaid ERD using my Django models"  
 > [paste-your-django-models-into-ChatGPT]
 
-The "I Think Therefore I Blog" sample ERD in Markdown syntax using Mermaid can be seen below as an example.
+The "Twitcher App" sample ERD in Markdown syntax using Mermaid can be seen below as an example.
 
 **NOTE**: A Markdown Preview tool doesn't show the interactive ERD; you must first commit/push the code to your GitHub repository in order to see it live in action.
 
-⚠️ --- END --- ⚠️
 
 I have used `Mermaid` to generate an interactive ERD of my project.
 
@@ -336,35 +318,9 @@ erDiagram
 
 source: [Mermaid](https://mermaid.live/edit#pako:eNqlVFFvmzAQ_iuWn0kUkgUSXrOsq7J0W9O8TEjIxRdiDXzINmsymv8-Q0oKGdUqzQ-I8_dxfPfd2SWNkQMNKKiPgiWKZaEKJbFru1nek-fnwQBLsrm9-fxwe3dDAhJSVpg9Kh3SPubi63q9vHuoiU9KGGjxLll6uDFKw4R8YXcyl01ULSENEZx8W7U3tVFCJqTQoCTLoAfKmdZPqHgPBBkTaXv_ETEFJonQkTZst2uwU1vZpZZ3qzPCpH3SdFok1oDt91ej2mgOsQAdvVFXijEzAmWkczQGOvVxZqB-9IEGDoboIsuYOvbkFRlLwKpapFhwIS1pe_-lK7DOINF2uOKtllwYVF1KZcd5WiLryqfVtTojMiCxAvvKI5S9cJHzK7jTh2aG_t2GWu8j8uM1U4tkb2zRf2v8D_3NELE8V_jr1ftaPHVoogSngVEFODQDZWfQhrSsSCE1e7DdptW5UMCLw4Az9XMQY1obLE_2-5zJH4hZk0JhkexpsGOpttHZs5fzfNlVIDmoBRbS0GDs1jloUNKDjcbecDKbf_D9iTeajFzfoUcaTOfD8dj13Pl0NvLmruefHPq7_uloOPOnTnUT4OYo40YF1DOwPl8o9b1y-gNW8VuG)
 
-⚠️ RECOMMENDED ⚠️
 
-Alternatively, or in addition to, a more comprehensive ERD can be auto-generated once you're at the end of your development stages, just before you submit. Follow the steps below to obtain a thorough ERD that you can include. Feel free to leave the steps below in the README for future use to yourself.
 
-⚠️ --- END --- ⚠️
 
-I have used `pygraphviz` and `django-extensions` to auto-generate an ERD.
-
-The steps taken were as follows:
-- In the terminal: `sudo apt update`
-- then: `sudo apt-get install python3-dev graphviz libgraphviz-dev pkg-config`
-- then type `Y` to proceed
-- then: `pip3 install django-extensions pygraphviz`
-- in my `settings.py` file, I added the following to my `INSTALLED_APPS`:
-```python
-INSTALLED_APPS = [
-    ...
-    'django_extensions',
-    ...
-]
-```
-- back in the terminal: `python3 manage.py graph_models -a -o erd.png`
-- drag the new `erd.png` file into my `documentation/` folder
-- removed `'django_extensions',` from my `INSTALLED_APPS`
-- finally, in the terminal: `pip3 uninstall django-extensions pygraphviz -y`
-
-![screenshot](documentation/advanced-erd.png)
-
-source: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
 
 ## Agile Development Process
 
@@ -378,7 +334,7 @@ Consider adding screenshots of your Projects Board(s), Issues (open and closed),
 
 [GitHub Projects](https://www.github.com/lion695/twitcher_app/projects) served as an Agile tool for this project. Through it, EPICs, User Stories, issues/bugs, and Milestone tasks were planned, then subsequently tracked on a regular basis using the Kanban project board.
 
-![screenshot](documentation/gh-projects.png)
+![screenshot](documentation/screenshots/kanban.png)
 
 ### GitHub Issues
 
@@ -386,8 +342,8 @@ Consider adding screenshots of your Projects Board(s), Issues (open and closed),
 
 | Link | Screenshot |
 | --- | --- |
-| [![GitHub issues](https://img.shields.io/github/issues-search/lion695/twitcher_app?query=is%3Aissue%20is%3Aopen%20-label%3Abug&label=Open%20Issues&color=yellow)](https://www.github.com/lion695/twitcher_app/issues?q=is%3Aissue%20is%3Aopen%20-label%3Abug) | ![screenshot](documentation/gh-issues-open.png) |
-| [![GitHub closed issues](https://img.shields.io/github/issues-search/lion695/twitcher_app?query=is%3Aissue%20is%3Aclosed%20-label%3Abug&label=Closed%20Issues&color=green)](https://www.github.com/lion695/twitcher_app/issues?q=is%3Aissue%20is%3Aclosed%20-label%3Abug) | ![screenshot](documentation/gh-issues-closed.png) |
+|[![GitHub issues](https://img.shields.io/github/issues-search/lion695/twitcher_app?query=is%3Aissue%20is%3Aopen%20-label%3Abug&label=Open%20Issues&color=yellow)]((https://www.github.com/lion695/twitcher_app/issues?q=is%3Aissue%20is%3Aopen%20-label%3Abug)) | ![screenshot](documentation/screenshots/open_issues.png) |
+| [![GitHub closed issues](https://img.shields.io/github/issues-search/lion695/twitcher_app?query=is%3Aissue%20is%3Aclosed%20-label%3Abug&label=Closed%20Issues&color=green)](https://www.github.com/lion695/twitcher_app/issues?q=is%3Aissue%20is%3Aclosed%20-label%3Abug) | ![screenshot](documentation/screenshots/closed_issues.png) |
 
 ### MoSCoW Prioritization
 
@@ -631,9 +587,7 @@ Eventually you'll want to learn how to use Git branches. Here's a helpful tutori
 
 ### Media
 
-⚠️ INSTRUCTIONS ⚠️
 
-Use this space to provide attribution links to any media files borrowed from elsewhere (images, videos, audio, etc.). If you're the owner (or a close acquaintance) of some/all media files, then make sure to specify this information. Let the assessors know that you have explicit rights to use the media files within your project. Ideally, you should provide an actual link to every media file used, not just a generic link to the main site, unless it's AI-generated artwork.
 
 Looking for some media files? Here are some popular sites to use. The list of examples below is by no means exhaustive.
 
